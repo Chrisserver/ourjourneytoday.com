@@ -1,92 +1,212 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our Journey Today</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    nav {
-      background-color: #444;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-    }
-    main {
-      padding: 2rem;
-    }
-    section {
-      margin-bottom: 3rem;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to Our Journey Today</h1>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Our Journey Today</h1>
+      <p>Discover our adventures, creations, and inspirations.</p>
+      <a href="about.html" class="btn-primary">Learn More</a>
+    </div>
   </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#shop">Shop</a>
-    <a href="#contact">Contact</a>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </nav>
-
-  <main>
-    <section id="about">
-      <h2>About Us</h2>
-      <p>This is our journey, captured in moments, shared with love. Join us as we explore, create, and inspire.</p>
-      <img src="https://via.placeholder.com/800x400" alt="About us image">
-    </section>
-
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <p>Some highlights from our travels and creative moments.</p>
-      <img src="https://via.placeholder.com/800x400" alt="Gallery image">
-    </section>
-
-    <section id="shop">
-      <h2>Shop Our Products</h2>
-      <p>Visit our stores to support our journey:</p>
-      <ul>
-        <li><a href="https://www.etsy.com" target="_blank">Our Etsy Shop</a></li>
-        <li><a href="https://www.shopify.com" target="_blank">Our Shopify Store</a></li>
-      </ul>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Have questions or want to connect? Email us at <a href="mailto:info@ourjourneytoday.com">info@ourjourneytoday.com</a></p>
-    </section>
-  </main>
-
   <footer>
-    <p>&copy; 2025 Our Journey Today. All rights reserved.</p>
+    <p>&copy; 2025 Our Journey Today</p>
   </footer>
 </body>
 </html>
+
+<!-- about.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Our Journey Today</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="sub-nav">
+    <a href="index.html">Home</a>
+  </nav>
+  <main>
+    <h2>About Us</h2>
+    <p>Our Journey Today is a place where we share our travels, creative projects, and life stories. We started this website to connect with like-minded explorers and creators.</p>
+    <img src="images/about.jpg" alt="About us" />
+  </main>
+  <footer>
+    <p>&copy; 2025 Our Journey Today</p>
+  </footer>
+</body>
+</html>
+
+<!-- gallery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Our Journey Today</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="sub-nav">
+    <a href="index.html">Home</a>
+  </nav>
+  <main>
+    <h2>Gallery</h2>
+    <p>Take a look at some of our favorite moments captured on camera.</p>
+    <div class="image-grid">
+      <img src="images/photo1.jpg" alt="Moment 1">
+      <img src="images/photo2.jpg" alt="Moment 2">
+      <img src="images/photo3.jpg" alt="Moment 3">
+      <img src="images/photo4.jpg" alt="Moment 4">
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 Our Journey Today</p>
+  </footer>
+</body>
+</html>
+
+<!-- shop.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - Our Journey Today</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="sub-nav">
+    <a href="index.html">Home</a>
+  </nav>
+  <main>
+    <h2>Shop Our Products</h2>
+    <p>Support our journey by visiting our stores:</p>
+    <ul class="shop-links">
+      <li><a href="https://etsy.com/yourshop" target="_blank">Our Etsy Shop</a></li>
+      <li><a href="https://yourstore.shopify.com" target="_blank">Our Shopify Store</a></li>
+    </ul>
+  </main>
+  <footer>
+    <p>&copy; 2025 Our Journey Today</p>
+  </footer>
+</body>
+</html>
+
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Our Journey Today</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="sub-nav">
+    <a href="index.html">Home</a>
+  </nav>
+  <main>
+    <h2>Contact Us</h2>
+    <p>Have questions or want to connect? Send us a message:</p>
+    <form action="mailto:info@ourjourneytoday.com" method="post" enctype="text/plain">
+      <label>Name:</label>
+      <input type="text" name="name" required>
+      <label>Email:</label>
+      <input type="email" name="email" required>
+      <label>Message:</label>
+      <textarea name="message" rows="5" required></textarea>
+      <button type="submit" class="btn-primary">Send</button>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2025 Our Journey Today</p>
+  </footer>
+</body>
+</html>
+
+<!-- styles.css -->
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+header.hero {
+  background: url('images/hero.jpg') center/cover no-repeat;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.btn-primary {
+  background: #ff6f61;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.main-nav ul, .sub-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #f4f4f4;
+  text-align: center;
+}
+.main-nav ul li {
+  display: inline-block;
+  margin: 0 1rem;
+}
+.main-nav ul li a, .sub-nav a {
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 1rem;
+}
+.main-nav ul li a:hover, .sub-nav a:hover {
+  background: #ddd;
+}
+.main-nav, .sub-nav {
+  margin-bottom: 2rem;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f4f4f4;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.shop-links {
+  list-style: none;
+  padding: 0;
+}
+.shop-links li {
+  margin-bottom: 0.5rem;
+}
