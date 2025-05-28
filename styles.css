@@ -7,19 +7,15 @@ body {
 header.hero {
   background: url('images/hero.jpg') center/cover no-repeat;
   height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  position: relative;
   color: blue;
 }
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+.hero-content {
+  position: absolute;
+  top: 30px; /* Distance from the top */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 .btn-primary {
   background: #ff6f61;
