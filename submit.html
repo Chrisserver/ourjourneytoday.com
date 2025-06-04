@@ -1,0 +1,30 @@
+<!-- submit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit Your Story - Our Journey Today</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header><h1>Submit Your Story</h1></header>
+  <main>
+    <form>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required><br>
+
+      <label for="story">Your Story:</label>
+      <textarea id="story" name="story" rows="8" required></textarea><br>
+
+      <label for="name">Name (optional):</label>
+      <input type="text" id="name" name="name"><br>
+
+      <label><input type="checkbox" name="anonymous"> Stay Anonymous</label><br>
+      <label><input type="checkbox" name="allowPublish" required> I allow this story to be published</label><br>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+  <footer>&copy; 2025 Our Journey Today</footer>
+</body>
+</html>
