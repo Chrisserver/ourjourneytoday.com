@@ -1,69 +1,60 @@
 <!-- styles.css -->
 body {
-  margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
+  margin: 0;
+  padding: 0;
+  background: #fdfdfb;
+  color: #222;
 }
-header.hero {
-  background: url('images/hero.jpg') center/cover no-repeat;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+
+header {
+  background: #2b3e50;
   color: white;
+  padding: 1rem;
+  text-align: center;
 }
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-.btn-primary {
-  background: #ff6f61;
-  color: black;
-  padding: 0.8rem 1.5rem;
-  text-decoration: none;
-  border-radius: 4px;
-}
-.main-nav ul, .sub-nav {
+
+nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
-  background: #748dab;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffc107;
+}
+
+.hero {
+  background: linear-gradient(to right, #e0f7fa, #e1bee7);
+  padding: 2rem;
   text-align: center;
 }
-.main-nav ul li {
-  display: inline-block;
-  margin: 0 1rem;
+
+main section {
+  padding: 2rem;
+  border-bottom: 1px solid #ddd;
 }
-.main-nav ul li a, .sub-nav a {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 1rem;
-}
-.main-nav ul li a:hover, .sub-nav a:hover {
-  background: #374a38;
-}
-.main-nav, .sub-nav {
-  margin-bottom: 2rem;
-}
+
 footer {
+  background: #2b3e50;
+  color: white;
   text-align: center;
   padding: 1rem;
-  background: #748dab;
 }
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-.shop-links {
-  list-style: none;
-  padding: 0;
-}
-.shop-links li {
-  margin-bottom: 0.5rem;
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
 }
