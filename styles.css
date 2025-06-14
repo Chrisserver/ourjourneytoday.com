@@ -7,21 +7,25 @@
   color: white;
   padding: 0.4rem 1rem;
   gap: 1rem;
-  flex-wrap: wrap;
 }
 
-.top-left,
+.top-left{
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;  
+}
+
 .top-center {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  flex-shrink: 0;
 }
 
 .top-left img {
   width: 20px;
   height: 20px;
-  filter: invert(1);
-  transition: opacity 0.2s;
 }
 
 .top-left img:hover {
@@ -202,7 +206,7 @@ nav ul li a {
 }
 
 /* Responsive Styles */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .menu-toggle {
     display: block;
   }
@@ -220,5 +224,9 @@ nav ul li a {
   nav ul {
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .top-bar {
+    flex-wrap: wrap;
   }
 }
