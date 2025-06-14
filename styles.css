@@ -173,7 +173,6 @@ nav ul li a {
 .top-bar .social-links img {
   width: 20px;
   height: 20px;
-  filter: invert(100%);
 }
 
 .search-box {
