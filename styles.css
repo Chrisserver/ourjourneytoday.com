@@ -1,53 +1,27 @@
 <!-- styles.css -->
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #1a1a1a;
-  color: white;
-  padding: 0.4rem 1rem;
-  gap: 1rem;
+.icon-bar {
+  width: 100%; /* Full-width */
+  background-color: #555; /* Dark-grey background */
+  overflow: auto; /* Overflow due to float */
 }
 
-.top-left{
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  flex-shrink: 0;  
+.icon-bar a {
+  float: left; /* Float links side by side */
+  text-align: center; /* Center-align text */
+  width: 20%; /* Equal width (5 icons with 20% width each = 100%) */
+  padding: 12px 0; /* Some top and bottom padding */
+  transition: all 0.3s ease; /* Add transition for hover effects */
+  color: white; /* White text color */
+  font-size: 36px; /* Increased font size */
 }
 
-.top-right {
-  display: flex;
-  align-items: right;
-  gap: 0.4rem;
-  flex-grow: 1;
-  justify-content: flex-end;
+.icon-bar a:hover {
+  background-color: #000; /* Add a hover color */
 }
 
-.top-left img {
-  width: 20px;
-  height: 20px;
+.active {
+  background-color: #04AA6D; /* Add an active/current color */
 }
-
-.top-left img:hover {
-  opacity: 0.7;
-}
-
-.top-right input {
-  padding: 0.3rem 0.6rem;
-  border-radius: 20px;
-  border: none;
-  min-width: 200px;
-}
-
-.top-right button {
-  background: transparent;
-  border: none;
-  font-size: 1rem;
-  color: white;
-  cursor: pointer;
-}
-
 
 
 body {
