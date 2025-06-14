@@ -16,11 +16,12 @@
   flex-shrink: 0;  
 }
 
-.top-center {
+.top-right {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  flex-shrink: 0;
+  align-items: right;
+  gap: 0.4rem;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .top-left img {
@@ -32,14 +33,14 @@
   opacity: 0.7;
 }
 
-.top-center input {
+.top-right input {
   padding: 0.3rem 0.6rem;
   border-radius: 20px;
   border: none;
   min-width: 200px;
 }
 
-.top-center button {
+.top-right button {
   background: transparent;
   border: none;
   font-size: 1rem;
