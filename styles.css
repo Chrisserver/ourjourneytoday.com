@@ -1,13 +1,27 @@
 <!-- styles.css -->
 .top-bar {
-  background-color: #1a1a1a;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #1a1a1a;
+  color: white;
   padding: 0.4rem 1rem;
-  font-size: 0.9rem;
   gap: 1rem;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.top-center {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-grow: 1;
+  justify-content: flex-end;
 }
 
 .search-box {
