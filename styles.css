@@ -20,12 +20,6 @@
   color: black;
 }
 
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
 .topnav img {
   width: 20px;
   height: 20px;
