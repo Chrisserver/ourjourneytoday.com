@@ -150,37 +150,27 @@ nav ul li a {
 
 /* Add a black background color to the top navigation bar */
 .topnav {
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #2b3e50;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0.5rem;
+  text-decoration: none;
 }
 
 .topnav input.split {
-  margin: 0;
-  padding: 6px;
+  padding: 6px 10px;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 200px;
 }
 
 .topnav .search-container {
@@ -188,8 +178,8 @@ nav ul li a {
 }
 
 .nav-icon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
 }
 
 /* Responsive Styles */
