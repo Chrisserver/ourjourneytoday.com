@@ -119,6 +119,7 @@ button {
   align-items: center;
   padding: 1rem;
   background-color: #2b3e50;
+  border-bottom: 2px solid #ccc;
   color: white;
 }
 
@@ -131,18 +132,44 @@ button {
   display: none; /* hidden by default */
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1rem;
+/* Menu hidden by default */
+#navMenu {
+  display: none;
+  background-color: #fafafa;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#navMenu ul {
+  list-style-type: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li a {
+#navMenu li {
+  border-left: 4px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#navMenu li a {
+  display: block;
+  padding: 12px 16px;
+  color: #333;
   text-decoration: none;
-  color: white;
-  font-weight: bold;
+  font-size: 18px;
+}
+
+#navMenu li:hover {
+  background-color: #eee;
+  border-left: 4px solid #04AA6D;
+}
+
+#navMenu li a:hover {
+  color: #111;
+}
+
+/* Show menu when toggled */
+#navMenu.active {
+  display: block;
 }
 
 /* Add a black background color to the top navigation bar */
@@ -187,25 +214,29 @@ nav ul li a {
   height: 16px;
 }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
+/* Optional: Make it responsive */
+@media screen and (min-width: 768px) {
   .menu-toggle {
-    display: block;
-  }
-
-  nav {
     display: none;
-    background-color: #2b3e50;
-    padding: 1rem;
   }
-
-  nav.open {
+  
+  #navMenu {
     display: block;
   }
 
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
+  #navMenu ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+  }
+
+  #navMenu li {
+    border: none;
+  }
+
+  #navMenu li:hover {
+    border: none;
+    background-color: transparent;
   }
 }
 
