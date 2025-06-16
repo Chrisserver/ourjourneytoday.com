@@ -176,11 +176,6 @@ nav ul li a {
   color: black;
 }
 
-.navbar a.active {
-  background-color: #0084ff;
-  color: black;
-}
-
 .nav-icon {
   width: 16px;
   height: 16px;
