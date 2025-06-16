@@ -116,7 +116,7 @@ button {
 .site-header {
   display: flex;
   justify-content: space-between;
-  align-items: left;
+  align-items: flex-start;
   padding: 1rem;
   background-color: #2b3e50;
   color: white;
@@ -152,13 +152,17 @@ nav ul li a {
 .topnav {
   overflow: hidden;
   background-color: #2b3e50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
   float: left;
   display: block;
-  color: black;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -166,19 +170,17 @@ nav ul li a {
 }
 
 /* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #0077ff;
-  color: black;
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
 }
 
-/* Style the search box inside the navigation bar */
 .topnav input.split {
-  float: right;
+  margin: 0;
   padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .topnav .search-container {
@@ -197,16 +199,11 @@ nav ul li a {
   }
 
   nav {
-    display: none;
     flex-direction: column;
     align-items: flex-start;
     background-color: #2b3e50;
     width: 100%;
     margin-top: 1rem;
-  }
-
-  nav ul.active {
-    display: flex;
   }
 
   nav ul li {
@@ -229,10 +226,7 @@ nav ul li a {
   nav ul.open {
     display: flex;
   }
-}
-
-/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
-@media screen and (max-width: 600px) {
+  
   .topnav .search-container {
     float: none;
   }
