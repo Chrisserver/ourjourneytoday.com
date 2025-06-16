@@ -116,7 +116,7 @@ button {
 .site-header {
   display: flex;
   justify-content: space-between;
-  align-items: left;
+  align-items: center;
   padding: 1rem;
   background-color: white;
   color: #2b3e50;
