@@ -205,10 +205,6 @@ nav ul li a {
     margin-top: 1rem;
   }
 
-  nav ul.active {
-    display: flex;
-  }
-
   nav ul li {
     width: 100%;
   }
