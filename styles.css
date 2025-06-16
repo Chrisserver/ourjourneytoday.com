@@ -156,29 +156,34 @@ nav ul li a {
 }
 
 .navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
+  display: flex;
+  background-color: #333;
+  overflow: hidden;
 }
 
-/* Navbar links */
 .navbar a {
-  float: left;
-  text-align: center;
-  padding: 12px;
+  display: flex;
+  align-items: center;
   color: white;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  gap: 8px;
 }
 
-/* Navbar links on mouse-over */
 .navbar a:hover {
-  background-color: #000;
+  background-color: #ddd;
+  color: black;
 }
 
-/* Current/active navbar link */
-.active {
+.navbar a.active {
   background-color: #04AA6D;
+  color: white;
+}
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
 }
 
 /* Responsive Styles */
@@ -200,10 +205,5 @@ nav ul li a {
   nav ul {
     flex-direction: column;
     gap: 0.5rem;
-  }
-
-  .navbar a {
-    float: none;
-    display: block;
   }
 }
