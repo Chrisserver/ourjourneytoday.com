@@ -128,11 +128,23 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  display: none; /* hidden by default */
+  display: block; /* hidden by default */
+}
+
+nav {
+  display: none;
+  background-color: #2b3e50;
+  padding: 1rem;
+}
+
+nav.open {
+  display: block;
+  text-align:left;
 }
 
 nav ul {
   display: flex;
+  flex-direction: column;
   list-style: none;
   gap: 1rem;
   padding: 0;
@@ -195,29 +207,6 @@ nav ul li a:hover {
 .nav-icon {
   width: 16px;
   height: 16px;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  nav {
-    display: none;
-    background-color: #2b3e50;
-    padding: 1rem;
-  }
-
-  nav.open {
-    display: block;
-    text-align:left;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
 }
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
