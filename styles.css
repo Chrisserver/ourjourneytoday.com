@@ -116,7 +116,7 @@ button {
 .site-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: left;
   padding: 1rem;
   background-color: #2b3e50;
   color: white;
@@ -143,6 +143,9 @@ nav ul li a {
   text-decoration: none;
   color: white;
   font-weight: bold;
+  display: block;
+  padding: 10px 16px;
+  transition: background-color 0.3s ease, border-left 0.3s ease;
 }
 
 /* Add a black background color to the top navigation bar */
@@ -195,17 +198,23 @@ nav ul li a {
 
   nav {
     display: none;
-    background-color: #2b3e50;
-    padding: 1rem;
-  }
-
-  nav.open {
-    display: block;
-  }
-
-  nav ul {
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+    background-color: #2b3e50;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  nav ul.active {
+    display: flex;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    width: 100%;
   }
 }
 
