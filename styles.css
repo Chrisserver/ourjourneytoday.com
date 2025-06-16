@@ -155,7 +155,7 @@ nav ul li a {
   font-weight: bold;
 }
 
-.topnav {
+.navbar {
   background-color: #333;
   overflow: hidden;
 }
@@ -172,14 +172,14 @@ nav ul li a {
 
 /* Change the color of links on hover */
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: #0048ff;
   color: black;
 }
 
 /* Create a right-aligned (split) link inside the navigation bar */
 .navbar a.split {
   float: right;
-  background-color: #04AA6D;
+  background-color: #1d2d57;
   color: white;
 }
 
