@@ -14,16 +14,6 @@ header {
   text-align: center;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: #ffc107;
-}
-
 .hero {
   background: linear-gradient(to right, #e0f7fa, #e1bee7);
   padding: 2rem;
@@ -198,7 +188,7 @@ nav ul li a {
 }
 
 /* Responsive Styles */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
