@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // More interactivity can be added here
 });
 
-<script>
-  const toggle = document.getElementById("menuToggle");
-  const navList = document.querySelector("nav ul");
+document.addEventListener('DOMContentLoaded', function () {
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('navMenu');
 
-  toggle.addEventListener("click", () => {
-    navList.classList.toggle("active");
+  toggle.addEventListener('click', function () {
+    menu.classList.toggle('open');
   });
-</script>
+});
 
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
