@@ -173,7 +173,7 @@ nav ul li a {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #12d8f3;
   color: black;
 }
 
@@ -184,13 +184,10 @@ nav ul li a {
 }
 
 /* Style the search box inside the navigation bar */
-.topnav input[type=text] {
+.topnav a.split {
   float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
+  background-color: #0048ff;
+  color: white;
 }
 
 .nav-icon {
