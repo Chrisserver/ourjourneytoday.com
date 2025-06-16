@@ -179,7 +179,7 @@ nav ul li a {
 }
 
 /* Style the search box inside the navigation bar */
-.topnav a.split {
+.topnav input.split {
   float: right;
   padding: 6px;
   border: none;
@@ -217,7 +217,7 @@ nav ul li a {
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 @media screen and (max-width: 600px) {
-  .topnav a, .topnav a.split {
+  .topnav a, .topnav input.split {
     float: none;
     display: block;
     text-align: left;
@@ -225,7 +225,7 @@ nav ul li a {
     margin: 0;
     padding: 14px;
   }
-  .topnav a.split {
+  .topnav input.split {
     border: 1px solid #ccc;
   }
 }
