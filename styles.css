@@ -157,7 +157,7 @@ nav ul li a {
 
 .navbar {
   display: flex;
-  background-color: #333;
+  background-color: #002ab5;
   overflow: hidden;
 }
 
@@ -172,12 +172,12 @@ nav ul li a {
 }
 
 .navbar a:hover {
-  background-color: #ddd;
+  background-color: #0084ff;
   color: black;
 }
 
 .navbar a.active {
-  background-color: #04AA6D;
+  background-color: #ab6700;
   color: white;
 }
 
