@@ -177,8 +177,8 @@ nav ul li a {
 }
 
 .navbar a.active {
-  background-color: #ab6700;
-  color: white;
+  background-color: #0084ff;
+  color: black;
 }
 
 .nav-icon {
