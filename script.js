@@ -4,15 +4,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // More interactivity can be added here
 });
 
-// Toggle menu on small screens
-document.addEventListener('DOMContentLoaded', function () {
-  const toggle = document.getElementById('menuToggle');
-  const menu = document.getElementById('navMenu');
+<script>
+  const toggle = document.getElementById("menuToggle");
+  const navList = document.querySelector("nav ul");
 
-  toggle.addEventListener('click', function () {
-    menu.classList.toggle('open');
+  toggle.addEventListener("click", () => {
+    navList.classList.toggle("active");
   });
-});
+</script>
 
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
