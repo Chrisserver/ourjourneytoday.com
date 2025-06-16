@@ -5,24 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Toggle menu on small screens
-
-//document.addEventListener('DOMContentLoaded', function () {
-//  const toggle = document.getElementById('menuToggle');
-//  const menu = document.getElementById('navMenu');
-//
-//  toggle.addEventListener('click', function () {
-//    menu.classList.toggle('open');
-//  });
-//});
-
-<script>
+document.addEventListener('DOMContentLoaded', function () {
   const toggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('navMenu');
+  const menu = document.getElementById('navMenu');
 
-  toggle.addEventListener('click', () => {
-    nav.classList.toggle('active');
+  toggle.addEventListener('click', function () {
+    menu.classList.toggle('open');
   });
-</script>
+});
 
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
