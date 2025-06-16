@@ -116,7 +116,7 @@ button {
 .site-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: left;
   padding: 1rem;
   background-color: #2b3e50;
   color: white;
@@ -150,27 +150,35 @@ nav ul li a {
 
 /* Add a black background color to the top navigation bar */
 .topnav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  overflow: hidden;
   background-color: #2b3e50;
-  padding: 0.5rem 1rem;
-  flex-wrap: wrap;
 }
 
+/* Style the links inside the navigation bar */
 .topnav a {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
+  font-size: 17px;
 }
 
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #0077ff;
+  color: black;
+}
+
+/* Style the search box inside the navigation bar */
 .topnav input.split {
-  padding: 6px 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  max-width: 200px;
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
 }
 
 .topnav .search-container {
@@ -178,22 +186,27 @@ nav ul li a {
 }
 
 .nav-icon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
 /* Responsive Styles */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
   nav {
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     background-color: #2b3e50;
     width: 100%;
     margin-top: 1rem;
+  }
+
+  nav ul.active {
+    display: flex;
   }
 
   nav ul li {
@@ -216,7 +229,10 @@ nav ul li a {
   nav ul.open {
     display: flex;
   }
-  
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
   .topnav .search-container {
     float: none;
   }
