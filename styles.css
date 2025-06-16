@@ -125,7 +125,7 @@ button {
 .menu-toggle {
   font-size: 1.8rem;
   background: none;
-  color: white;
+  color: #2b3e50;
   border: none;
   cursor: pointer;
   display: block; /* hidden by default */
