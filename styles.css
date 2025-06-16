@@ -148,6 +148,13 @@ nav ul li a {
   transition: background-color 0.3s ease, border-left 0.3s ease;
 }
 
+nav ul li a:hover {
+  background-color: #0048ff; /* Or any color you like */
+  border-left: 4px solid #00bcd4; /* Highlight bar */
+  padding-left: 12px; /* Slight indent so text doesn't jump */
+  transition: background-color 0.3s ease, border-left 0.3s ease;
+}
+
 /* Add a black background color to the top navigation bar */
 .topnav {
   overflow: hidden;
