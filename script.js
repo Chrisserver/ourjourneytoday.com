@@ -24,3 +24,22 @@ function searchArticles() {
   console.log("Searching for:", query);
   alert(`Search for: ${query} (functionality coming soon)`);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch('articles.json')
+    .then(response => response.json())
+    .then(data => {
+      const container = document.getElementById("articlesList");
+      data.forEach(article => {
+        const articleHTML = `
+          <div class="article">
+            <h3><a href="${article.link}">${article.title}</a></h3>
+            <p>${article.summary}</p>
+            <small>${article.date}</small>
+          </div>
+        `;
+        container.innerHTML += articleHTML;
+      });
+    })
+    .catch(error => console.error("Error loading articles:", error));
+});
