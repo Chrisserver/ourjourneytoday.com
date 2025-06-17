@@ -149,6 +149,50 @@ button {
   opacity: 0.9;
 }
 
+.form-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #2b3e50;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+form button {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: #2b3e50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #0077ff;
+}
+
 .site-header {
   display: flex;
   justify-content: space-between;
