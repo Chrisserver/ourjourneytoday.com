@@ -103,55 +103,13 @@ button {
   color: #2b3e50;
 }
 
-.menu-toggle {
-  font-size: 1.8rem;
-  background: none;
-  color: #2b3e50;
-  border: none;
-  cursor: pointer;
-  display: block; /* hidden by default */
-}
-
-nav {
-  display: none;
-  background-color: #2b3e50;
-  padding: 1rem;
-}
-
-nav.open {
-  display: block;
-  text-align:left;
-}
-
-nav ul {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  display: block;
-  padding: 10px 16px;
-  transition: background-color 0.3s ease, border-left 0.3s ease;
-}
-
-nav ul li a:hover {
-  background-color: #0048ff; /* Or any color you like */
-  border-left: 4px solid #00bcd4; /* Highlight bar */
-  padding-left: 12px; /* Slight indent so text doesn't jump */
-  transition: background-color 0.3s ease, border-left 0.3s ease;
-}
-
-/* Add a black background color to the top navigation bar */
 .topnav {
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #2b3e50;
+  padding: 0.5rem 1rem;
+  position: relative;
 }
 
 /* Style the links inside the navigation bar */
@@ -190,15 +148,70 @@ nav ul li a:hover {
   height: 16px;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
 .logo-image {
   width: 60px;
   height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #fff; /* Optional border */
+  margin-top: -10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  margin-top: -10px; /* So it rises above the topnav */
 }
+
+.search-container {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.search-container input.split {
+  padding: 6px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  width: 60%;
+  max-width: 300px;
+}
+
+.menu-toggle {
+  font-size: 1.8rem;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+nav {
+  display: none;
+  background-color: #2b3e50;
+}
+
+nav.open {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, border-left 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #0077ff;
+  border-left: 4px solid white;
+}
+
 
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 @media screen and (max-width: 600px) {
