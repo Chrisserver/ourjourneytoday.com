@@ -32,25 +32,6 @@ footer {
   padding: 1rem;
 }
 
-.back-button {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background-color: #2b3e50;
-  color: white;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-  transition: background 0.2s ease-in-out;
-  z-index: 1000;
-}
-
-.back-button:hover {
-  background-color: #3a4f66;
-}
-
 .product-list {
   display: flex;
   flex-wrap: wrap;
