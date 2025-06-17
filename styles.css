@@ -8,10 +8,10 @@ body {
 }
 
 header {
-  background: #2b3e50;
-  color: white;
+  background: white;
+  color: #2b3e50;
   padding: 1rem;
-  text-align: center;
+  text-align: left;
 }
 
 .hero {
