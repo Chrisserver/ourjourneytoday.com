@@ -149,7 +149,7 @@ button {
 
 .search-container {
   flex-grow: 1;
-  text-align: center;
+  text-align: right;
 }
 
 .search-container input.split {
