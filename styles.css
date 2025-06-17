@@ -221,12 +221,6 @@ form button:hover {
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #0077ff;
-  color: black;
-}
-
 .nav-icon {
   width: 16px;
   height: 16px;
