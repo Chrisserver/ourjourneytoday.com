@@ -175,6 +175,7 @@ button {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  height: 45px;
 }
 
 /* Change the color of links on hover */
@@ -223,8 +224,10 @@ button {
   color: white;
   border: none;
   cursor: pointer;
+  margin-top: 0;       /* Reset if you've added it before */
+  align-self: center;  /* Ensures it's aligned with other flex items */
+  line-height: 1;      /* Helps with vertical centering */
 }
-/* align-items:c enter;*/
 
 nav {
   display: none;
