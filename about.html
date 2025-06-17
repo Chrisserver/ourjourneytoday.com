@@ -9,14 +9,34 @@
 <body>
   
   <div class="topnav">
-    <a href="/index.html">
-      <img src="images/logo.png" alt="Logo" class="nav-icon" /></a>
-    <div class="search-container">
-      <form action="/search.html">
-        <input class="split" placeholder="Search.." name="search">
-      </form>
-    </div>
+    <!-- Hamburger menu on the left -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+      &#9776;
+    </button>
+    
+    <!-- Logo in the middle -->
+    <a href="/index.html" class="logo-container">
+      <img src="images/logo.png" alt="Logo" class="logo-image" />
+    </a>
+
+    <!-- Search bar on the right -->
+    <a href="/search.html" class="search-logo">
+      <img src="images/search.svg" alt="Search Container" class="nav-icon" />
+    </a>   
   </div>
+
+  <nav id="navMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="teachings.html">Teachings</a></li>
+      <li><a href="my-story.html">My Story</a></li>
+      <li><a href="community.html">Community Voices</a></li>
+      <li><a href="submit.html">Submit Story</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="shop.html">Shop</a></li>
+    </ul>
+  </nav>
   
   <header><h1>About This Blog</h1></header>
   <main>
