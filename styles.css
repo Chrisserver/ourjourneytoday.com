@@ -180,8 +180,8 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  align-items:center;
 }
+/* align-items:c enter;*/
 
 nav {
   display: none;
