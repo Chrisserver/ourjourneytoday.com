@@ -156,7 +156,7 @@ nav ul li a:hover {
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: center;
+  float: left;
   display: block;
   color: black;
   text-align: center;
