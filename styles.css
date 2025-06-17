@@ -116,7 +116,7 @@ button {
 .topnav a {
   float: left;
   display: block;
-  color: black;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -164,6 +164,7 @@ button {
 
 .menu-toggle {
   font-size: 1.8rem;
+  display: block;
   background: none;
   color: white;
   border: none;
@@ -173,10 +174,11 @@ button {
 nav {
   display: none;
   background-color: #2b3e50;
+  flex-direction: column;
 }
 
 nav.open {
-  display: block;
+  display: flex;
 }
 
 nav ul {
