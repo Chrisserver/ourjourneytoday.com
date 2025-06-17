@@ -32,6 +32,18 @@ footer {
   padding: 1rem;
 }
 
+.article {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+.article h3 {
+  margin: 0;
+}
+.article p {
+  margin: 0.5rem 0;
+}
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
