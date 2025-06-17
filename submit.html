@@ -1,29 +1,20 @@
-<!-- submit.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Submit Your Story - Our Journey Today</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-
   <div class="topnav">
-    <!-- Hamburger menu on the left -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
-      &#9776;
-    </button>
-    
-    <!-- Logo in the middle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">&#9776;</button>
     <a href="/index.html" class="logo-container">
       <img src="images/logo.png" alt="Logo" class="logo-image" />
     </a>
-
-    <!-- Search bar on the right -->
     <a href="/search.html" class="search-logo">
-      <img src="images/search.svg" alt="Search Container" class="nav-icon" />
-    </a>   
+      <img src="images/search.svg" alt="Search" class="nav-icon" />
+    </a>
   </div>
 
   <nav id="navMenu">
@@ -38,25 +29,32 @@
       <li><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
-  
-  <header><h1>Submit Your Story</h1></header>
-  <main>
-    <form>
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" required><br>
 
-      <label for="story">Your Story:</label>
-      <textarea id="story" name="story" rows="8" required></textarea><br>
+  <header class="hero">
+    <h1>Share Your Journey</h1>
+    <p>Your testimony could be the light someone else needs.</p>
+  </header>
 
-      <label for="name">Name (optional):</label>
-      <input type="text" id="name" name="name"><br>
+  <main class="form-container">
+    <form action="submit-success.html" method="POST">
+      <label for="name">Your Name (optional)</label>
+      <input type="text" id="name" name="name" placeholder="First Name or Anonymous">
 
-      <label><input type="checkbox" name="anonymous"> Stay Anonymous</label><br>
-      <label><input type="checkbox" name="allowPublish" required> I allow this story to be published</label><br>
+      <label for="title">Story Title</label>
+      <input type="text" id="title" name="title" required placeholder="What would you call your journey?">
 
-      <button type="submit">Submit</button>
+      <label for="story">Your Story</label>
+      <textarea id="story" name="story" rows="10" required placeholder="Tell us how God has moved in your life..."></textarea>
+
+      <label for="email">Your Email (optional)</label>
+      <input type="email" id="email" name="email" placeholder="If you’d like us to reach out">
+
+      <button type="submit">Submit Story</button>
     </form>
   </main>
+
   <footer>&copy; 2025 Our Journey Today</footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
