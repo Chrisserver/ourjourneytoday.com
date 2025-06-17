@@ -190,6 +190,16 @@ nav ul li a:hover {
   height: 16px;
 }
 
+.logo-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff; /* Optional border */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  margin-top: -10px; /* So it rises above the topnav */
+}
+
 /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
 @media screen and (max-width: 600px) {
   .topnav .search-container {
