@@ -8,7 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const toggle = document.getElementById('menuToggle');
   const menu = document.getElementById('navMenu');
 
+  if (!toggle || !menu) {
+    console.error('Toggle or menu not found');
+    return;
+  }
+
   toggle.addEventListener('click', function () {
+    console.log("Hamburger clicked");
     menu.classList.toggle('open');
   });
 });
