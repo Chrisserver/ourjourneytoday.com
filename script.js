@@ -29,16 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('articles.json')
     .then(response => response.json())
     .then(data => {
-      const container = document.getElementById("articlesList");
+      const grid = document.getElementById("articlesGrid");
       data.forEach(article => {
-        const articleHTML = `
-          <div class="article">
-            <h3><a href="${article.link}">${article.title}</a></h3>
-            <p>${article.summary}</p>
-            <small>${article.date}</small>
-          </div>
+        const card = document.createElement("div");
+        card.className = "article-card";
+        card.innerHTML = `
+          <h3><a href="${article.link}">${article.title}</a></h3>
+          <p>${article.summary}</p>
+          <small>${article.date}</small>
         `;
-        container.innerHTML += articleHTML;
+        grid.appendChild(card);
       });
     })
     .catch(error => console.error("Error loading articles:", error));
