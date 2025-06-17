@@ -129,20 +129,6 @@ button {
   color: black;
 }
 
-/* Style the search box inside the navigation bar */
-.topnav input.split {
-  float: right;
-  padding: 6px;
-  border: none;
-  margin-top: 8px;
-  margin-right: 16px;
-  font-size: 17px;
-}
-
-.topnav .search-container {
-  float: right;
-}
-
 .nav-icon {
   width: 16px;
   height: 16px;
