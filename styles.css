@@ -178,7 +178,7 @@ nav {
 }
 
 nav.open {
-  display: flex;
+  display: block;
 }
 
 nav ul {
