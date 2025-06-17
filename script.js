@@ -29,17 +29,34 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('articles.json')
     .then(response => response.json())
     .then(data => {
-      const grid = document.getElementById("articlesGrid");
-      data.forEach(article => {
-        const card = document.createElement("div");
-        card.className = "article-card";
-        card.innerHTML = `
-          <h3><a href="${article.link}">${article.title}</a></h3>
-          <p>${article.summary}</p>
-          <small>${article.date}</small>
-        `;
-        grid.appendChild(card);
-      });
+      const path = window.location.pathname;
+
+      if (path.includes("index.html") || path === "/") {
+        // Show 3 featured articles on homepage
+        const featured = data.slice(0, 3); // You could also filter by tags like "featured"
+        renderArticles(featured, "featuredGrid");
+      }
+
+      if (path.includes("teachings.html")) {
+        // Show all articles on the Teachings page
+        renderArticles(data, "articlesGrid");
+      }
     })
     .catch(error => console.error("Error loading articles:", error));
 });
+
+function renderArticles(articles, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  articles.forEach(article => {
+    const card = document.createElement("div");
+    card.className = "article-card";
+    card.innerHTML = `
+      <h3><a href="${article.link}">${article.title}</a></h3>
+      <p>${article.summary}</p>
+      <small>${article.date}</small>
+    `;
+    container.appendChild(card);
+  });
+}
