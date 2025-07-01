@@ -2,30 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Search - Our Journey Today</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search – Our Journey Today</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+  <script src="search.js" defer></script>
 </head>
 <body>
-  
+
+  <!-- Top nav + hamburger + logo + search icon (reuse your existing code) -->
   <div class="topnav">
-    <!-- Hamburger menu on the left -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
-      &#9776;
-    </button>
-    
-    <!-- Logo in the middle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">☰</button>
     <a href="/index.html" class="logo-container">
       <img src="images/logo.png" alt="Logo" class="logo-image" />
     </a>
-
-    <!-- Search bar on the right -->
     <a href="/search.html" class="search-logo">
-      <img src="images/search.svg" alt="Search Container" class="nav-icon" />
-    </a>   
+      <img src="images/search.svg" alt="Search" class="nav-icon" />
+    </a>
   </div>
-
   <nav id="navMenu">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -38,15 +32,26 @@
       <li><a href="shop.html">Shop</a></li>
     </ul>
   </nav>
-  
-    <header><h1>Search</h1></header>
-    <main>
-      <ul>
-        <li><a href="#">Downloadable Prayer Guides</a></li>
-        <li><a href="#">Recommended Christian Books</a></li>
-        <li><a href="#">YouTube Channels for Bible Study</a></li>
-      </ul>
-    </main>
-    <footer>&copy; 2025 Our Journey Today</footer>
+
+  <header class="hero">
+    <h1>Search Articles</h1>
+    <p>Type to find teachings, testimonies & more…</p>
+  </header>
+
+  <main class="search-page">
+    <div class="search-bar-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search articles..."
+        autofocus
+      />
+    </div>
+    <div id="searchResults" class="articles-grid">
+      <!-- Cards will be injected here -->
+    </div>
+  </main>
+
+  <footer>&copy; 2025 Our Journey Today</footer>
 </body>
 </html>
