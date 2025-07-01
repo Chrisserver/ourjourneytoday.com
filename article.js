@@ -4,13 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const mdFile = params.get("file") || "a1.md"; 
   const mdPath = `data/${mdFile}`;
 
-  fetch(mdPath)
-    .catch(err => {
-      console.error(err);
-      document.querySelector(".article-content").innerHTML =
-        "<p>Imp</p>";
-    });
-/*
   // 2. Fetch the markdown file
   fetch(mdPath)
     .then(res => {
@@ -27,5 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".article-content").innerHTML =
         "<p>Sorry, we couldn't load that article.</p>";
     });
-*/
 });
