@@ -1,23 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Figure out which file to load, e.g. via URL param ?file=article1.md
   const params = new URLSearchParams(window.location.search);
-  const mdFile = params.get("file") || "2025-06-01-brokenness.md"; 
-  const mdPath = `data/${mdFile}`;
+  const mdFile = params.get("file");
+  const loadingEl = document.getElementById("loading");
+  const container = document.getElementById("articleContainer");
 
-  // 2. Fetch the markdown file
-  fetch(mdPath)
+  if (!mdFile) {
+    loadingEl.innerHTML = "<p>Erreur : aucun article spécifié.</p>";
+    return;
+  }
+
+  fetch(`/data/${mdFile}`)
     .then(res => {
-      if (!res.ok) throw new Error("Cannot load " + mdPath);
+      if (!res.ok) throw new Error("Fichier introuvable");
       return res.text();
     })
     .then(mdText => {
-      // 3. Convert markdown to HTML
-      const html = marked.parse(mdText);
-      document.querySelector(".article-content").innerHTML = html;
+      // parse markdown and show it
+      container.innerHTML = marked.parse(mdText);
+      loadingEl.style.display = "none";
+      container.style.display = "block";
     })
     .catch(err => {
       console.error(err);
-      document.querySelector(".article-content").innerHTML =
-        "<p>Sorry, we couldn't load that article.</p>";
+      loadingEl.innerHTML = "<p>Impossible de charger l’article.</p>";
     });
 });
