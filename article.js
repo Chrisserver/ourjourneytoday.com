@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".article-content").innerHTML =
         "<p>Imp</p>";
     });
-
+/*
   // 2. Fetch the markdown file
   fetch(mdPath)
     .then(res => {
@@ -27,4 +27,5 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".article-content").innerHTML =
         "<p>Sorry, we couldn't load that article.</p>";
     });
+*/
 });
