@@ -105,6 +105,13 @@ footer {
   margin-bottom: 1rem;
 }
 
+.loader {
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+  color: #555;
+}
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
