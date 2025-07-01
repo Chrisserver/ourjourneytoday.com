@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => {
       console.error(err);
       document.querySelector(".article-content").innerHTML =
-        "<p>Impossible de charger l'article.</p>";
+        "<p>Imp</p>";
     });
 
   // 2. Fetch the markdown file
