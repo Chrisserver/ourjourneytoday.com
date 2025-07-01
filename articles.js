@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Figure out which file to load, e.g. via URL param ?file=article1.md
   const params = new URLSearchParams(window.location.search);
-  const mdFile = params.get("file") || "article1.md"; 
+  const mdFile = params.get("file") || "2025-06-01-brokenness.md"; 
   const mdPath = `data/${mdFile}`;
 
   // 2. Fetch the markdown file
