@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
-  const mdFile = params.get("file");
+  const mdFile = params.get("file") || "2025-06-01-brokenness.md";
   const loadingEl = document.getElementById("loading");
   const container = document.getElementById("articleContainer");
 
