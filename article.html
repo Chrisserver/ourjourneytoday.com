@@ -43,9 +43,13 @@
   
   <header><h1>Our Journey Today</h1></header>
   <main class="article-content">
-    <section id="articleSection">
-      <div id="articleContent">Chargement en cours...</div>
-    </section>
+    <!-- loading indicator -->
+    <div id="loading" class="loader">
+      <p>Chargement de l’article…</p>
+    </div>
+
+    <!-- once loaded, the markdown HTML replaces this -->
+    <div id="articleContainer" style="display:none;"></div>
   </main>
   <footer>&copy; 2025 Our Journey Today</footer>
 </body>
