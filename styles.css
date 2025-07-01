@@ -258,18 +258,31 @@ form button:hover {
 }
 /*margin-top: -10px;*/
 
-.search-container {
-  flex-grow: 1;
-  text-align: right;
+/* --- Search page styling --- */
+.search-page {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.search-container input.split {
-  padding: 6px;
-  font-size: 16px;
-  border-radius: 4px;
-  border: none;
-  width: 60%;
-  max-width: 300px;
+.search-bar-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-bar-container input {
+  width: 90%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-bar-container input:focus {
+  border-color: #04AA6D;
 }
 
 .menu-toggle {
