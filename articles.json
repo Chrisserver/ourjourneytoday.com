@@ -1,23 +1,18 @@
 [
   {
-    "id": "2025-06-01-intro-foi",
-    "title": "Introduction à la foi chrétienne",
-    "summary": "Un aperçu des bases de la foi chrétienne.",
+    "id": "brokenness-2025-06-01",
+    "title": "How God Uses Brokenness to Heal",
+    "link": "article.html?file=2025-06-01-brokenness.md",
+    "summary": "Even our lowest moments are tools in His hands—discover how God redeems our pain for His glory.",
     "date": "2025-06-01",
-    "link": "article.html?id=2025-06-01-intro-foi"
+    "tags": ["healing", "testimony"]
   },
   {
-    "id": "2025-05-15-roches-mineraux",
-    "title": "Roches et minéraux : guide visuel",
-    "summary": "Découvrez les principaux types de roches et de minéraux.",
+    "id": "faith-doubt-2025-05-15",
+    "title": "Walking in Faith During Doubt",
+    "link": "article.html?file=2025-05-15-faith-doubt.md",
+    "summary": "Faith isn’t the absence of doubt but trusting God through uncertainty—practical steps to persevere.",
     "date": "2025-05-15",
-    "link": "article.html?id=2025-05-15-roches-mineraux"
-  },
-  {
-    "id": "2025-04-20-cybersecurite",
-    "title": "Bases de la cybersécurité",
-    "summary": "Les bonnes pratiques pour protéger vos données.",
-    "date": "2025-04-20",
-    "link": "article.html?id=2025-04-20-cybersecurite"
+    "tags": ["faith", "encouragement"]
   }
 ]
