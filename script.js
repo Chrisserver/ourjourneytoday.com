@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // More interactivity can be added here
 });
 
+/*
 document.addEventListener('DOMContentLoaded', function () {
   const toggle = document.getElementById('menuToggle');
   const menu = document.getElementById('navMenu');
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     menu.classList.toggle('open');
   });
 });
+*/
 
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
