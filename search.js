@@ -43,25 +43,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
-function renderResults(list, query = "") {
-    resultsContainer.innerHTML = "";
-
-    if (list.length === 0 && query !== "") {
-      resultsContainer.innerHTML = "<p>No articles found.</p>";
-      return;
-    }
-
-    list.forEach(article => {
-      const card = document.createElement("div");
-      card.className = "article-card";
-      card.innerHTML = `
-        <h3><a href="${article.link}">${article.title}</a></h3>
-        <p>${article.summary}</p>
-        <small>${article.date}</small>
-      `;
-      resultsContainer.appendChild(card);
-    });
-  }
-});
