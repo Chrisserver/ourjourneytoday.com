@@ -1,9 +1,3 @@
----
-title: "Introduction à la foi chrétienne"
-date: "2025-06-01"
-author: "Votre Nom"
----
-
 # Introduction à la foi chrétienne
 
 La foi chrétienne repose sur la confiance en Dieu tel qu'il se révèle dans la Bible et en la personne de Jésus-Christ.
@@ -33,13 +27,6 @@ Le Saint‑Esprit habite en chaque croyant pour guider, consoler et sanctifier.
 ## Pourquoi cette introduction ?
 
 Ce document vise à fournir un aperçu succinct pour ceux qui découvrent la foi chrétienne ou veulent en revisiter les bases.
-
----
-
-> « Car Dieu a tant aimé le monde qu’il a donné son Fils unique »  
-> — Jean 3:16
-
----
 
 ### Ressources complémentaires
 
