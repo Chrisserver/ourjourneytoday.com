@@ -3,32 +3,49 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultsContainer = document.getElementById("searchResults");
   let articles = [];
 
-  // Load all articles once
   fetch("/data/articles.json")
     .then(res => res.json())
     .then(data => {
       articles = data;
-      renderResults(articles); // show them all initially, or you can leave this out
     })
-    .catch(err => console.error("Failed to load articles.json:", err));
+    .catch(err => console.error("Failed to load articles:", err));
 
-  // Live‐filter as the user types
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
-    if (q === "") {
-      // If the search box is empty, clear the grid (or show all articles)
+
+    // 1) Clear if empty
+    if (!q) {
       resultsContainer.innerHTML = "";
       return;
     }
 
+    // 2) Filter
     const filtered = articles.filter(a =>
       a.title.toLowerCase().includes(q) ||
-      a.summary.toLowerCase().includes(q)
+      (a.summary && a.summary.toLowerCase().includes(q))
     );
-    renderResults(filtered, q);
-  });
 
-  function renderResults(list, query = "") {
+    // 3) Render or “no matches”
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = "<p>No articles found.</p>";
+    } else {
+      resultsContainer.innerHTML = "";            // clear first
+      filtered.forEach(a => {
+        const card = document.createElement("div");
+        card.className = "article-card";
+        card.innerHTML = `
+          <h3><a href="${a.link}">${a.title}</a></h3>
+          <p>${a.summary}</p>
+          <small>${a.date}</small>
+        `;
+        resultsContainer.appendChild(card);
+      });
+    }
+  });
+});
+
+
+function renderResults(list, query = "") {
     resultsContainer.innerHTML = "";
 
     if (list.length === 0 && query !== "") {
