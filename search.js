@@ -3,29 +3,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const resultsContainer = document.getElementById("searchResults");
   let articles = [];
 
-  // 1. Load your JSON file
+  // Load all articles once
   fetch("/data/articles.json")
     .then(res => res.json())
     .then(data => {
       articles = data;
-      renderResults(articles);
+      renderResults(articles); // show them all initially, or you can leave this out
     })
     .catch(err => console.error("Failed to load articles.json:", err));
 
-  // 2. Live-filter as the user types
+  // Live‐filter as the user types
   input.addEventListener("input", () => {
     const q = input.value.trim().toLowerCase();
+    if (q === "") {
+      // If the search box is empty, clear the grid (or show all articles)
+      resultsContainer.innerHTML = "";
+      return;
+    }
+
     const filtered = articles.filter(a =>
       a.title.toLowerCase().includes(q) ||
       a.summary.toLowerCase().includes(q)
     );
-    renderResults(filtered);
+    renderResults(filtered, q);
   });
 
-  // 3. Render a list of article-cards into the container
-  function renderResults(list) {
+  function renderResults(list, query = "") {
     resultsContainer.innerHTML = "";
-    if (list.length === 0) {
+
+    if (list.length === 0 && query !== "") {
       resultsContainer.innerHTML = "<p>No articles found.</p>";
       return;
     }
