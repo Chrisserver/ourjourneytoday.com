@@ -4,6 +4,29 @@ document.addEventListener("DOMContentLoaded", () => {
   // More interactivity can be added here
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menuToggle');
+  const menu  = document.getElementById('navMenu');
+
+  // Toggle open/close on click
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('open');
+  });
+
+  // Close menu when the mouse leaves its area
+  menu.addEventListener('mouseleave', () => {
+    menu.classList.remove('open');
+  });
+
+  // Close menu when the user scrolls
+  window.addEventListener('scroll', () => {
+    if (menu.classList.contains('open')) {
+      menu.classList.remove('open');
+    }
+  });
+});
+
+
 /*
 document.addEventListener('DOMContentLoaded', function () {
   const toggle = document.getElementById('menuToggle');
