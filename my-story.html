@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>My Story - Our Journey Today</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js" defer></script>
@@ -39,9 +40,41 @@
     </ul>
   </nav>
   
-  <header><h1>My Story</h1></header>
-  <main>
-    <p>Here is where I share my walk with God, the joys, the trials, and everything in between.</p>
+  <header class="hero hero-story">
+    <h1>My Journey in Faith</h1>
+    <p>From first steps to breakthroughs—I share my walk with God here.</p>
+  </header>
+
+  <main class="story-container">
+    <ul class="timeline">
+      <li class="entry">
+        <div class="marker"></div>
+        <div class="content">
+          <h2>2004</h2>
+          <p>Born into a loving family in Quebec...</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="marker"></div>
+        <div class="content">
+          <h2>2021</h2>
+          <p>Discovered my passion for math & CS at Université de Montréal.</p>
+        </div>
+      </li>
+      <li class="entry">
+        <div class="marker"></div>
+        <div class="content">
+          <h2>2024</h2>
+          <p>Began this blog to share our walk and build community.</p>
+        </div>
+      </li>
+      <!-- add more entries as needed -->
+    </ul>
+
+    <section class="call-to-action">
+      <p>Want to read more reflections or share your journey?</p>
+      <a href="submit.html" class="btn">Submit Your Story</a>
+    </section>
   </main>
   <footer>&copy; 2025 Our Journey Today</footer>
 </body>
