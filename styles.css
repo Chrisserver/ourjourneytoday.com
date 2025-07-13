@@ -87,6 +87,121 @@ footer {
   font-size: 0.85rem;
 }
 
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: white;
+  color: #2b3e50;
+}
+
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e0be99;
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+/*margin-top: -10px;*/
+
+/* --- Search page styling --- */
+.search-page {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.search-bar-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.search-bar-container input {
+  width: 90%;
+  max-width: 500px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.search-bar-container input:focus {
+  border-color: #04AA6D;
+}
+
+.menu-toggle {
+  font-size: 1.8rem;
+  display: block;
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 0;       /* Reset if you've added it before */
+  align-self: center;  /* Ensures it's aligned with other flex items */
+  line-height: 1;      /* Helps with vertical centering */
+}
+
+nav {
+  display: none;
+  background-color: #2b3e50;
+  flex-direction: column;
+}
+
+nav.open {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease, border-left 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #0077ff;
+  border-left: 4px solid white;
+}
+
 /* ------------------------------------------------------------
    ARTICLE PAGE STYLING
 ------------------------------------------------------------ */
@@ -217,7 +332,7 @@ footer {
 }
 
 /* ------------------------------------------------------------
-   Different Stuff
+   COMMUNITY PAGE
 ------------------------------------------------------------ */
 
 .community-grid {
@@ -252,6 +367,114 @@ footer {
 .read-more {
   display:
 }
+
+/* ------------------------------------------------------------
+   MY STORY PAGE
+------------------------------------------------------------ */
+
+/* Hero for Story */
+.hero-story {
+  background: url('images/faith-path.jpg') center/cover no-repeat;
+  color: white;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+/* Story Container */
+.story-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+  list-style: none;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #04AA6D;
+}
+
+.entry {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 50px;
+}
+
+.marker {
+  position: absolute;
+  left: 12px;
+  top: 5px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 4px solid #04AA6D;
+  border-radius: 50%;
+}
+
+.entry .content h2 {
+  margin: 0;
+  color: #2b3e50;
+}
+
+.entry .content p {
+  margin: 0.5rem 0 0 0;
+  line-height: 1.6;
+}
+
+/* Fade‑in animation */
+.entry {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+.entry:nth-child(1) { animation-delay: 0.2s; }
+.entry:nth-child(2) { animation-delay: 0.4s; }
+.entry:nth-child(3) { animation-delay: 0.6s; }
+/* add more delays for extra items */
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Call to action */
+.call-to-action {
+  text-align: center;
+  margin: 3rem 0;
+}
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #2b3e50;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background: #04AA6D;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .timeline::before { left: 16px; }
+  .entry { padding-left: 40px; }
+  .marker { left: 6px; }
+}
+
+/* ------------------------------------------------------------
+   SHOP PAGE
+------------------------------------------------------------ */
 
 .product-list {
   display: flex;
@@ -357,121 +580,6 @@ form button {
 
 form button:hover {
   background: #0077ff;
-}
-
-.site-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: white;
-  color: #2b3e50;
-}
-
-.topnav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #e0be99;
-  padding: 0.5rem 1rem;
-  position: relative;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.nav-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.logo-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-/*margin-top: -10px;*/
-
-/* --- Search page styling --- */
-.search-page {
-  padding: 2rem 1rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.search-bar-container {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.search-bar-container input {
-  width: 90%;
-  max-width: 500px;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  border: 2px solid #ccc;
-  border-radius: 30px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.search-bar-container input:focus {
-  border-color: #04AA6D;
-}
-
-.menu-toggle {
-  font-size: 1.8rem;
-  display: block;
-  background: none;
-  color: white;
-  border: none;
-  cursor: pointer;
-  margin-top: 0;       /* Reset if you've added it before */
-  align-self: center;  /* Ensures it's aligned with other flex items */
-  line-height: 1;      /* Helps with vertical centering */
-}
-
-nav {
-  display: none;
-  background-color: #2b3e50;
-  flex-direction: column;
-}
-
-nav.open {
-  display: block;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease, border-left 0.3s ease;
-}
-
-nav ul li a:hover {
-  background-color: #0077ff;
-  border-left: 4px solid white;
 }
 
 
