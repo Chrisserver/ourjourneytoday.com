@@ -203,6 +203,63 @@ nav ul li a:hover {
 }
 
 /* ------------------------------------------------------------
+    INDEX PAGE
+-------------------------------------------------------------*/
+
+.daily-inspiration {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 1rem;
+  background: #f4f8fb;
+}
+
+.verse-card,
+.prayer-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 400px;
+  flex: 1 1 300px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.verse-card:hover,
+.prayer-card:hover {
+  transform: translateY(-5px);
+}
+
+.verse-card h2,
+.prayer-card h2 {
+  font-size: 1.5rem;
+  color: #2b3e50;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #333;
+  margin: 0;
+  padding: 0 1rem;
+}
+
+.reference {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 0.5rem;
+}
+
+#prayerText {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------
    ARTICLE PAGE STYLING
 ------------------------------------------------------------ */
 .article-page {
