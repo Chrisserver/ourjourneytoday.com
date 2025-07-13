@@ -219,7 +219,7 @@ footer {
 /* ------------------------------------------------------------
    Different Stuff
 ------------------------------------------------------------ */
-/**
+
 .community-grid {
   display: flex;
   flex-wrap: wrap;
@@ -251,8 +251,7 @@ footer {
 
 .read-more {
   display:
-
-**/
+}
 
 .product-list {
   display: flex;
