@@ -124,7 +124,7 @@ function renderArticleDetail(article) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('storyForm');
-  const FORMSPREE_URL = 'https://formspree.io/f/yourFormId'; // <- replace
+  const FORMSPREE_URL = 'https://formspree.io/f/xrbapzyz'; // <- replace
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
