@@ -122,3 +122,62 @@ function renderArticleDetail(article) {
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('storyForm');
+  const FORMSPREE_URL = 'https://formspree.io/f/yourFormId'; // <- replace
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name  = document.getElementById('name').value.trim();
+    const title = document.getElementById('title').value.trim();
+    const story = document.getElementById('story').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    // Build a condensed message (short readable text)
+    const condensed = [
+      `Title: ${title}`,
+      `Name: ${name || 'Anonymous'}`,
+      `Email: ${email || 'N/A'}`,
+      '',
+      `Story:`,
+      story.length > 800 ? story.slice(0, 800) + '…' : story // short preview + full story included in a separate field if desired
+    ].join('\n');
+
+    // Payload for Formspree. You can include _subject to set email subject.
+    const payload = {
+      _subject: `New Story: ${title}`,
+      name,
+      email,
+      title,
+      message: condensed
+    };
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // success UI — redirect or show message
+        alert('Merci — story submitted! We will read it and get back to you if needed.');
+        form.reset();
+        // optionally redirect to a success page:
+        // window.location.href = 'submit-success.html';
+      } else {
+        // Formspree returns errors in JSON
+        throw new Error((data && data.error) || 'Failed to send');
+      }
+    } catch (err) {
+      console.error('Submit error:', err);
+      alert('Sorry — problème lors de l’envoi. Réessaye plus tard.');
+    }
+  });
+});
+
+
+
