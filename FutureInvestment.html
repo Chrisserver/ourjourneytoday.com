@@ -705,7 +705,7 @@ function update() {
   // Chart
   const traces = [
     {
-      y: nw, name: 'Net Worth',
+      x: years, y: nw, name: 'Net Worth',
       type: 'scatter', mode: 'lines',
       line: { color: '#00e5c3', width: 2.5 },
       fill: 'tozeroy', fillcolor: 'rgba(0,229,195,0.06)',
@@ -715,13 +715,13 @@ function update() {
       x: years, y: etfs, name: 'ETF Portfolio',
       type: 'scatter', mode: 'lines',
       line: { color: '#a78bfa', width: 1.5, dash: 'dot' },
-      hovertemplate: '%{x}: $%{y:,.0f}<extra>ETF</extra>',
+      hovertemplate: '$%{y:,.0f}<extra>ETF</extra>',
     },
     {
       x: years, y: re, name: 'Real Estate Equity',
       type: 'scatter', mode: 'lines',
       line: { color: '#ff6b35', width: 1.5, dash: 'dash' },
-      hovertemplate: '%{x}: $%{y:,.0f}<extra>RE Equity</extra>',
+      hovertemplate: '$%{y:,.0f}<extra>RE Equity</extra>',
     },
     {
       x: years, y: revenues, name: 'Annual Revenue',
