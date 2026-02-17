@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>30-Year Wealth Simulation</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 16px;
+  }
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    color: #f1f5f9;
+    letter-spacing: -0.02em;
+  }
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #334155;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 160px;
+  }
+  label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    font-weight: 600;
+  }
+  input[type="number"] {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #f1f5f9;
+    font-size: 1rem;
+    padding: 10px 12px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="number"]:focus {
+    border-color: #3b82f6;
+  }
+  input[type="number"].error {
+    border-color: #ef4444;
+  }
+  .hint {
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+  #error-msg {
+    color: #f87171;
+    font-size: 0.85rem;
+    min-height: 20px;
+    padding: 0 4px;
+  }
+  #chart {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #334155;
+  }
+  .final-value {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px 24px;
+    border: 1px solid #334155;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; }
+  .stat-value { font-size: 1.4rem; font-weight: 700; color: #3b82f6; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>30-Year Wealth Simulation</h1>
+
+  <div class="inputs">
+    <div class="field">
+      <label>Annual Income</label>
+      <input type="number" id="income" value="400000" step="10000" min="1">
+      <span class="hint">in $</span>
+    </div>
+    <div class="field">
+      <label>Save Rate</label>
+      <input type="number" id="save" value="40" step="1" min="0.1" max="100">
+      <span class="hint">in %</span>
+    </div>
+    <div class="field">
+      <label>Annual Return</label>
+      <input type="number" id="return_rate" value="7" step="0.5" min="0.1" max="100">
+      <span class="hint">in %</span>
+    </div>
+    <div class="field">
+      <label>House Price</label>
+      <input type="number" id="house" value="2000000" step="100000" min="1">
+      <span class="hint">in $</span>
+    </div>
+    <div class="field">
+      <label>Mortgage Rate</label>
+      <input type="number" id="mortgage" value="5.5" step="0.1" min="0.1" max="100">
+      <span class="hint">in %</span>
+    </div>
+  </div>
+
+  <div id="error-msg"></div>
+
+  <div class="final-value">
+    <div class="stat">
+      <span class="stat-label">Net Worth at Year 30</span>
+      <span class="stat-value" id="final-nw">—</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Annual Housing Cost</span>
+      <span class="stat-value" id="annual-cost">—</span>
+    </div>
+    <div class="stat">
+      <span class="stat-label">Annual Savings Invested</span>
+      <span class="stat-value" id="annual-inv">—</span>
+    </div>
+  </div>
+
+  <div id="chart"></div>
+</div>
+
+<script>
+function simulate(income, saveRate, returnRate, housePrice, mortgageRate) {
+  const downPayment = housePrice * 0.2;
+  const mortgage = housePrice - downPayment;
+  const annualMortgage = mortgage * mortgageRate;
+  const annualHouseCost = annualMortgage + housePrice * 0.01 + housePrice * 0.015;
+  const annualSavings = income * saveRate - annualHouseCost;
+
+  let invested = 0;
+  const netWorth = [0];
+  for (let i = 1; i <= 30; i++) {
+    invested *= (1 + returnRate);
+    if (annualSavings > 0) invested += annualSavings;
+    netWorth.push(Math.round(invested));
+  }
+  return { netWorth, annualHouseCost, annualSavings };
+}
+
+function fmt(v) {
+  if (Math.abs(v) >= 1e6) return '$' + (v / 1e6).toFixed(2) + 'M';
+  if (Math.abs(v) >= 1e3) return '$' + (v / 1e3).toFixed(0) + 'K';
+  return '$' + v.toFixed(0);
+}
+
+const years = Array.from({length: 31}, (_, i) => i);
+
+// Init chart
+Plotly.newPlot('chart', [{
+  x: years,
+  y: [],
+  type: 'scatter',
+  mode: 'lines',
+  line: { color: '#3b82f6', width: 3 },
+  fill: 'tozeroy',
+  fillcolor: 'rgba(59,130,246,0.08)',
+  hovertemplate: 'Year %{x}<br>Net Worth: %{y:$,.0f}<extra></extra>',
+}], {
+  paper_bgcolor: '#1e293b',
+  plot_bgcolor: '#1e293b',
+  font: { color: '#94a3b8', family: 'Segoe UI, system-ui, sans-serif' },
+  xaxis: {
+    title: 'Year',
+    gridcolor: '#334155',
+    tickcolor: '#475569',
+    linecolor: '#334155',
+  },
+  yaxis: {
+    title: 'Net Worth ($)',
+    gridcolor: '#334155',
+    tickcolor: '#475569',
+    linecolor: '#334155',
+    tickprefix: '$',
+    tickformat: ',.0f',
+  },
+  margin: { t: 20, b: 60, l: 100, r: 20 },
+  hovermode: 'x unified',
+}, { responsive: true });
+
+function update() {
+  const income   = parseFloat(document.getElementById('income').value);
+  const save     = parseFloat(document.getElementById('save').value) / 100;
+  const ret      = parseFloat(document.getElementById('return_rate').value) / 100;
+  const house    = parseFloat(document.getElementById('house').value);
+  const mortgage = parseFloat(document.getElementById('mortgage').value) / 100;
+  const errEl    = document.getElementById('error-msg');
+
+  // Validate
+  const errs = [];
+  if (isNaN(income) || income <= 0)      errs.push("Income must be a positive number.");
+  if (isNaN(save) || save <= 0 || save > 1)   errs.push("Save rate must be between 0 and 100%.");
+  if (isNaN(ret) || ret <= 0 || ret > 1)      errs.push("Return must be between 0 and 100%.");
+  if (isNaN(house) || house <= 0)        errs.push("House price must be a positive number.");
+  if (isNaN(mortgage) || mortgage <= 0 || mortgage > 1) errs.push("Mortgage rate must be between 0 and 100%.");
+
+  if (errs.length) {
+    errEl.textContent = errs[0];
+    return;
+  }
+  errEl.textContent = '';
+
+  const { netWorth, annualHouseCost, annualSavings } = simulate(income, save, ret, house, mortgage);
+
+  Plotly.update('chart', { y: [netWorth] }, {}, [0]);
+
+  document.getElementById('final-nw').textContent   = fmt(netWorth[30]);
+  document.getElementById('annual-cost').textContent = fmt(annualHouseCost);
+  document.getElementById('annual-inv').textContent  = annualSavings > 0 ? fmt(annualSavings) : '⚠ Negative';
+}
+
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', update));
+
+// Initial render
+update();
+</script>
+</body>
+</html>
