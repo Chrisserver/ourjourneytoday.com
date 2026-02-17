@@ -705,11 +705,11 @@ function update() {
   // Chart
   const traces = [
     {
-      x: years, y: nw, name: 'Net Worth',
+      y: nw, name: 'Net Worth',
       type: 'scatter', mode: 'lines',
       line: { color: '#00e5c3', width: 2.5 },
       fill: 'tozeroy', fillcolor: 'rgba(0,229,195,0.06)',
-      hovertemplate: '%{x}: <b>$%{y:,.0f}</b><extra>Net Worth</extra>',
+      hovertemplate: '<b>$%{y:,.0f}</b><extra>Net Worth</extra>',
     },
     {
       x: years, y: etfs, name: 'ETF Portfolio',
