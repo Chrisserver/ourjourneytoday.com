@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Lifetime Wealth Simulation</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #07080d;
+    --surface:  #0d1117;
+    --card:     #111827;
+    --border:   #1f2937;
+    --border2:  #374151;
+    --text:     #f3f4f6;
+    --muted:    #6b7280;
+    --accent:   #00e5c3;
+    --accent2:  #ff6b35;
+    --accent3:  #a78bfa;
+    --danger:   #f87171;
+    --gold:     #fbbf24;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .wrapper { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+
+  header {
+    margin-bottom: 36px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 24px;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  header h1 span { color: var(--accent); }
+  header p { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  /* Section labels */
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* Grid of param sections */
+  .params-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .param-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .param-card:hover { border-color: var(--border2); }
+
+  .fields-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1 1 120px;
+  }
+  label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  input[type="number"] {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 8px 10px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="number"]:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,229,195,0.1); }
+  .hint { font-size: 0.65rem; color: var(--border2); font-family: 'JetBrains Mono', monospace; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    background: var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .stat {
+    flex: 1 1 160px;
+    background: var(--card);
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: background 0.15s;
+  }
+  .stat:hover { background: #161d29; }
+  .stat-label { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .stat-value { font-size: 1.25rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+  .stat-value.green  { color: var(--accent); }
+  .stat-value.orange { color: var(--accent2); }
+  .stat-value.purple { color: var(--accent3); }
+  .stat-value.gold   { color: var(--gold); }
+  .stat-value.red    { color: var(--danger); }
+
+  /* Chart */
+  #chart {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  /* Table */
+  .table-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: auto;
+    max-height: 340px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; }
+  thead { position: sticky; top: 0; background: var(--surface); z-index: 2; }
+  th {
+    padding: 10px 14px;
+    text-align: right;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  th:first-child { text-align: left; }
+  td { padding: 8px 14px; text-align: right; border-bottom: 1px solid var(--border); color: #d1d5db; white-space: nowrap; }
+  td:first-child { text-align: left; color: var(--muted); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .pos { color: var(--accent); }
+  .neg { color: var(--danger); }
+
+  #error-msg { color: var(--danger); font-size: 0.8rem; min-height: 18px; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; padding: 0 2px; }
+
+  /* Property tag chips */
+  .prop-chip {
+    display: inline-block;
+    font-size: 0.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(167,139,250,0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(167,139,250,0.2);
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin: 2px;
+    cursor: default;
+  }
+  .props-list { margin-top: 10px; }
+  .toggle-table {
+    background: none;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: all 0.15s;
+  }
+  .toggle-table:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div>
+      <h1>Lifetime <span>Wealth</span> Simulation</h1>
+    </div>
+    <p id="header-age">// age 22 → 80 · from 2025</p>
+  </header>
+
+  <!-- SECTION 1: Identity & Income -->
+  <div class="section-label">01 — Identity & Income</div>
+  <div class="params-grid">
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Birth Year</label>
+          <input type="number" id="birth_year" value="2003" step="1" min="1950" max="2020">
+          <span class="hint">e.g. 2003</span>
+        </div>
+        <div class="field">
+          <label>Sim Start Year</label>
+          <input type="number" id="year_actual" value="2025" step="1" min="2000" max="2050">
+          <span class="hint">current year</span>
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Initial Salary (CAD)</label>
+          <input type="number" id="initial_salary" value="56000" step="1000" min="0">
+          <span class="hint">base + bonus</span>
+        </div>
+        <div class="field">
+          <label>Salary Growth %</label>
+          <input type="number" id="g_sal" value="1.5" step="0.1" min="0" max="20">
+          <span class="hint">per year</span>
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Living Expenses</label>
+          <input type="number" id="living_exp" value="44000" step="1000" min="0">
+          <span class="hint">CAD / year</span>
+        </div>
+        <div class="field">
+          <label>Starting Cash</label>
+          <input type="number" id="cash" value="15000" step="1000" min="0">
+          <span class="hint">CAD</span>
+        </div>
+        <div class="field">
+          <label>Exp Start Year</label>
+          <input type="number" id="expenses_year" value="2028" step="1" min="2020">
+          <span class="hint">lifestyle ramp</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Side income -->
+  <div class="section-label">02 — Side Hustle & Business</div>
+  <div class="params-grid">
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Side Hustle Start</label>
+          <input type="number" id="sh_start" value="2026" step="1">
+        </div>
+        <div class="field">
+          <label>Side Hustle End</label>
+          <input type="number" id="sh_end" value="2068" step="1">
+        </div>
+        <div class="field">
+          <label>Initial Profit</label>
+          <input type="number" id="sh_initial_profit" value="3000" step="500" min="0">
+          <span class="hint">CAD / yr</span>
+        </div>
+        <div class="field">
+          <label>SH Growth %</label>
+          <input type="number" id="g_sh" value="5" step="0.5" min="0">
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Business Start</label>
+          <input type="number" id="biz2_start" value="2036" step="1">
+        </div>
+        <div class="field">
+          <label>Biz Init Profit</label>
+          <input type="number" id="biz2_initial_profit" value="20000" step="1000" min="0">
+          <span class="hint">CAD / yr</span>
+        </div>
+        <div class="field">
+          <label>Biz Growth %</label>
+          <input type="number" id="g_biz2" value="5" step="0.5" min="0">
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Apartment Start</label>
+          <input type="number" id="apt_year" value="2028" step="1">
+        </div>
+        <div class="field">
+          <label>Apt Payment/mo</label>
+          <input type="number" id="apt_payment_mo" value="2500" step="100" min="0">
+          <span class="hint">CAD / month</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Investing -->
+  <div class="section-label">03 — Investment Parameters</div>
+  <div class="params-grid">
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Invest Rate %</label>
+          <input type="number" id="invest_rate" value="10" step="1" min="0" max="100">
+          <span class="hint">% of revenue</span>
+        </div>
+        <div class="field">
+          <label>ETF Return &lt;40 %</label>
+          <input type="number" id="r_etf_pre40" value="6" step="0.5" min="0">
+        </div>
+        <div class="field">
+          <label>ETF Return ≥40 %</label>
+          <input type="number" id="r_etf_post40" value="7" step="0.5" min="0">
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Mortgage Rate %</label>
+          <input type="number" id="r_mort" value="5" step="0.1" min="0">
+        </div>
+        <div class="field">
+          <label>Amort. Years</label>
+          <input type="number" id="amort_years" value="25" step="1" min="5" max="30">
+        </div>
+        <div class="field">
+          <label>Prop. Appre. %</label>
+          <input type="number" id="r_prop" value="1" step="0.1" min="0">
+        </div>
+        <div class="field">
+          <label>Rental Yield %</label>
+          <input type="number" id="r_rental" value="6" step="0.5" min="0">
+        </div>
+      </div>
+    </div>
+    <div class="param-card">
+      <div class="fields-row">
+        <div class="field">
+          <label>Retire Year</label>
+          <input type="number" id="retire_year" value="2053" step="1">
+        </div>
+        <div class="field">
+          <label>Inflation %</label>
+          <input type="number" id="inflation" value="1" step="0.1" min="0">
+          <span class="hint">expense growth</span>
+        </div>
+        <div class="field">
+          <label>Bldg Appre. %</label>
+          <input type="number" id="interest_buildings" value="3" step="0.1" min="0">
+          <span class="hint">price growth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Properties -->
+  <div class="section-label">04 — Real Estate Portfolio</div>
+  <div id="props-display" class="param-card" style="margin-bottom:24px;">
+    <p style="font-size:0.75rem; color:var(--muted); margin-bottom:10px;">Properties are pre-configured. Edit base prices below:</p>
+    <div id="prop-inputs" class="fields-row" style="flex-wrap:wrap; gap:12px;"></div>
+  </div>
+
+  <div id="error-msg"></div>
+
+  <!-- STATS -->
+  <div class="section-label">Results</div>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-label">Peak Net Worth</span><span class="stat-value green" id="s-peak">—</span></div>
+    <div class="stat"><span class="stat-label">Net Worth at 80</span><span class="stat-value gold" id="s-80">—</span></div>
+    <div class="stat"><span class="stat-label">At Retirement</span><span class="stat-value orange" id="s-retire">—</span></div>
+    <div class="stat"><span class="stat-label">ETF Portfolio @80</span><span class="stat-value purple" id="s-etf">—</span></div>
+    <div class="stat"><span class="stat-label">Total Real Estate</span><span class="stat-value green" id="s-re">—</span></div>
+    <div class="stat"><span class="stat-label">Annual Rental @Peak</span><span class="stat-value orange" id="s-rental">—</span></div>
+  </div>
+
+  <!-- CHART -->
+  <div id="chart"></div>
+
+  <!-- TABLE -->
+  <button class="toggle-table" onclick="toggleTable()">▼ Show Data Table</button>
+  <div class="table-wrap" id="table-wrap" style="display:none;">
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th><th>Age</th>
+          <th>Net Worth</th><th>Revenue</th>
+          <th>ETF</th><th>Cashflow</th>
+          <th>Rentals</th><th>Expenses</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+// ── Default properties ──────────────────────────────────────────────
+const DEFAULT_PROPS = [
+  { name: "First House",     year: 2033, base_price: 625000,  sold: 2068 },
+  { name: "First Condo",     year: 2038, base_price: 400000,  sold: null },
+  { name: "Chalet",          year: 2043, base_price: 457198,  sold: null },
+  { name: "First Duplex",    year: 2045, base_price: 675000,  sold: 2070 },
+  { name: "First Complex",   year: 2046, base_price: 850000,  sold: 2073 },
+  { name: "First Rental",    year: 2050, base_price: 700000,  sold: null },
+  { name: "Second Rental",   year: 2053, base_price: 900000,  sold: null },
+  { name: "Second House",    year: 2068, base_price: 625000,  sold: null },
+];
+
+const KIDS_EXPENSES = [
+  16561.21,16892.44,22514.24,29057.15,47564.68,42177.21,
+  61671.37,56309.94,57436.13,51723.57,62764.57,64019.86,
+  75711.05,77225.27,89601.17,91393.19,104490.04,106579.84,
+  106448.58,108577.56,108394.84,110562.73,110324.61,102084.95,
+  101578.32,92741.71,94596.55,85181.23,86884.86,76858.50,
+  78395.67,59972.69,61172.14,41597.06,42429.00,21638.79,22071.56
+];
+
+// ── Build property price inputs ──────────────────────────────────────
+function buildPropInputs() {
+  const container = document.getElementById('prop-inputs');
+  container.innerHTML = '';
+  DEFAULT_PROPS.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'field';
+    div.style.flexBasis = '150px';
+    div.innerHTML = `
+      <label>${p.name} (${p.year})</label>
+      <input type="number" id="prop_price_${i}" value="${p.base_price}" step="10000" min="0">
+      <span class="hint">${p.sold ? '→ sold ' + p.sold : 'kept'}</span>
+    `;
+    container.appendChild(div);
+    div.querySelector('input').addEventListener('input', update);
+  });
+}
+
+// ── Helpers ──────────────────────────────────────────────────────────
+function g(id) { return parseFloat(document.getElementById(id).value); }
+
+function fmt(v, short=false) {
+  if (v === null || isNaN(v)) return '—';
+  const abs = Math.abs(v);
+  if (abs >= 1e9)  return (v/1e9).toFixed(2)+'B';
+  if (abs >= 1e6)  return (v/1e6).toFixed(short ? 1 : 2)+'M';
+  if (abs >= 1e3)  return (v/1e3).toFixed(0)+'K';
+  return v.toFixed(0);
+}
+function fmtC(v) { return (v >= 0 ? '' : '-') + '$' + fmt(Math.abs(v)); }
+
+function toggleTable() {
+  const tw = document.getElementById('table-wrap');
+  const btn = document.querySelector('.toggle-table');
+  if (tw.style.display === 'none') {
+    tw.style.display = 'block';
+    btn.textContent = '▲ Hide Data Table';
+  } else {
+    tw.style.display = 'none';
+    btn.textContent = '▼ Show Data Table';
+  }
+}
+
+// ── Core Simulation ──────────────────────────────────────────────────
+function simulate() {
+  const year_actual   = Math.round(g('year_actual'));
+  const birth_year    = Math.round(g('birth_year'));
+  const initial_salary= g('initial_salary');
+  const g_sal         = g('g_sal') / 100;
+  const living_exp    = g('living_exp');
+  const cash_init     = g('cash');
+  const expenses_year = Math.round(g('expenses_year'));
+
+  const sh_start      = Math.round(g('sh_start'));
+  const sh_end        = Math.round(g('sh_end'));
+  const sh_profit0    = g('sh_initial_profit');
+  const g_sh          = g('g_sh') / 100;
+
+  const biz2_start    = Math.round(g('biz2_start'));
+  const biz2_profit0  = g('biz2_initial_profit');
+  const g_biz2        = g('g_biz2') / 100;
+
+  const apt_year      = Math.round(g('apt_year'));
+  const apt_payment   = g('apt_payment_mo') * 12;
+
+  const invest_rate   = g('invest_rate') / 100;
+  const r_etf_pre40   = g('r_etf_pre40') / 100;
+  const r_etf_post40  = g('r_etf_post40') / 100;
+  const r_mort        = g('r_mort') / 100;
+  const amort_years   = Math.round(g('amort_years'));
+  const r_prop        = g('r_prop') / 100;
+  const r_rental      = g('r_rental') / 100;
+  const retire_year   = Math.round(g('retire_year'));
+  const inflation     = g('inflation') / 100;
+  const int_bldgs     = g('interest_buildings') / 100;
+
+  // Build properties with current base prices
+  const properties = DEFAULT_PROPS.map((p, i) => {
+    const base_price = parseFloat(document.getElementById('prop_price_' + i).value) || p.base_price;
+    const delta = p.year - (year_actual + 1);
+    const price = base_price * Math.pow(1 + int_bldgs, delta);
+    const down  = 0.2 * price;
+    const principal = price - down;
+    const payment = r_mort * principal / (1 - Math.pow(1 + r_mort, -amort_years));
+    return {
+      ...p,
+      base_price,
+      price, down, principal,
+      payment,
+      balance: 0,
+      value: 0,
+    };
+  });
+
+  const end_year = birth_year + 80;
+  const years = [];
+  for (let y = year_actual; y <= end_year; y++) years.push(y);
+
+  let etf = 15000;
+  let cash_flow = cash_init;
+  const records = [];
+
+  for (const year of years) {
+    const age = year - birth_year;
+
+    // ── Income ──
+    const salary    = year >= 2026 ? initial_salary * Math.pow(1 + g_sal, year - 2026) : 0;
+    const sh_profit = (year >= sh_start && year < sh_end) ? sh_profit0 * Math.pow(1 + g_sh, year - sh_start) : 0;
+    const biz2      = year >= biz2_start ? biz2_profit0 * Math.pow(1 + g_biz2, year - biz2_start) : 0;
+
+    // ── Expenses ──
+    let expenses = 0;
+
+    // Cash-downs
+    for (const prop of properties) {
+      if (year === prop.year) {
+        expenses -= prop.down;
+        prop.balance = prop.principal;
+        prop.value   = prop.price;
+      }
+    }
+
+    // Apartment
+    if (year >= apt_year && year <= apt_year + 5) {
+      expenses -= apt_payment * Math.pow(1 + r_mort, year - apt_year);
+    }
+
+    // Mortgage payments
+    for (const prop of properties) {
+      if (year > prop.year && prop.balance > 0) {
+        prop.balance = prop.balance * (1 + r_mort) - prop.payment;
+        if (prop.balance < 0) prop.balance = 0;
+        expenses -= prop.payment;
+      }
+    }
+
+    // ── Sales ──
+    let benefits = 0;
+    for (const prop of properties) {
+      if (prop.sold === year) {
+        benefits += prop.value - prop.balance;
+        prop.value   = 0;
+        prop.balance = 0;
+      }
+    }
+
+    // ── Rental income ──
+    const rental_income = properties.reduce((s, p) => s + (p.value > 0 ? p.value * r_rental : 0), 0);
+
+    // ── ETF ──
+    const revenue       = salary + sh_profit + biz2 + rental_income;
+    const invest_amount = revenue * invest_rate;
+    const etf_rate      = age >= 40 ? r_etf_post40 : r_etf_pre40;
+    etf = etf * (1 + etf_rate) + invest_amount;
+
+    // ── Kids ──
+    let kids_exp = 0;
+    const idx = age - 30;
+    if (year >= expenses_year + 2 && year <= expenses_year + 1 + KIDS_EXPENSES.length) {
+      if (idx >= 0 && idx < KIDS_EXPENSES.length) kids_exp = KIDS_EXPENSES[idx];
+    }
+
+    // ── Cash allocation ──
+    if (year < expenses_year) {
+      benefits += salary + sh_profit;
+    } else if (year >= retire_year) {
+      benefits += sh_profit + biz2 + rental_income;
+      expenses -= living_exp * Math.pow(1 + inflation, year - year_actual);
+    } else {
+      benefits += salary + sh_profit + biz2 + rental_income;
+      expenses -= (living_exp + kids_exp) * Math.pow(1 + inflation, year - year_actual);
+    }
+
+    cash_flow += benefits + expenses;
+
+    // ── Property appreciation ──
+    for (const prop of properties) {
+      if (prop.value > 0) prop.value *= (1 + r_prop);
+    }
+
+    // ── Net Worth ──
+    const re_equity = properties.reduce((s, p) => s + p.value - p.balance, 0);
+    const net_worth = cash_flow + etf + re_equity;
+
+    records.push({
+      year, age,
+      net_worth: Math.round(net_worth),
+      revenue:   Math.round(revenue),
+      etf:       Math.round(etf),
+      cash_flow: Math.round(cash_flow),
+      rentals:   Math.round(rental_income),
+      expenses:  Math.round(expenses),
+      re_equity: Math.round(re_equity),
+    });
+  }
+
+  return records;
+}
+
+// ── Render ────────────────────────────────────────────────────────────
+let chartInitialized = false;
+
+function update() {
+  const errEl = document.getElementById('error-msg');
+  errEl.textContent = '';
+
+  let records;
+  try { records = simulate(); }
+  catch(e) { errEl.textContent = 'Simulation error: ' + e.message; return; }
+
+  const years   = records.map(r => r.year);
+  const nw      = records.map(r => r.net_worth);
+  const etfs    = records.map(r => r.etf);
+  const re      = records.map(r => r.re_equity);
+  const cash    = records.map(r => r.cash_flow);
+  const revenues= records.map(r => r.revenue);
+
+  // Stats
+  const peakNW    = Math.max(...nw);
+  const nw80      = nw[nw.length - 1];
+  const retireIdx = records.findIndex(r => r.year >= Math.round(g('retire_year')));
+  const nwRetire  = retireIdx >= 0 ? nw[retireIdx] : 0;
+  const etf80     = etfs[etfs.length - 1];
+  const reMax     = Math.max(...re);
+  const rentalMax = Math.max(...records.map(r => r.rentals));
+
+  document.getElementById('s-peak').textContent   = fmtC(peakNW);
+  document.getElementById('s-80').textContent     = fmtC(nw80);
+  document.getElementById('s-retire').textContent = fmtC(nwRetire);
+  document.getElementById('s-etf').textContent    = fmtC(etf80);
+  document.getElementById('s-re').textContent     = fmtC(reMax);
+  document.getElementById('s-rental').textContent = fmtC(rentalMax);
+
+  // Header age
+  const birth_year  = Math.round(g('birth_year'));
+  const year_actual = Math.round(g('year_actual'));
+  document.getElementById('header-age').textContent =
+    `// age ${year_actual - birth_year} → 80 · from ${year_actual}`;
+
+  // Chart
+  const traces = [
+    {
+      x: years, y: nw, name: 'Net Worth',
+      type: 'scatter', mode: 'lines',
+      line: { color: '#00e5c3', width: 2.5 },
+      fill: 'tozeroy', fillcolor: 'rgba(0,229,195,0.06)',
+      hovertemplate: '%{x}: <b>$%{y:,.0f}</b><extra>Net Worth</extra>',
+    },
+    {
+      x: years, y: etfs, name: 'ETF Portfolio',
+      type: 'scatter', mode: 'lines',
+      line: { color: '#a78bfa', width: 1.5, dash: 'dot' },
+      hovertemplate: '%{x}: $%{y:,.0f}<extra>ETF</extra>',
+    },
+    {
+      x: years, y: re, name: 'Real Estate Equity',
+      type: 'scatter', mode: 'lines',
+      line: { color: '#ff6b35', width: 1.5, dash: 'dash' },
+      hovertemplate: '%{x}: $%{y:,.0f}<extra>RE Equity</extra>',
+    },
+    {
+      x: years, y: revenues, name: 'Annual Revenue',
+      type: 'bar',
+      marker: { color: 'rgba(251,191,36,0.25)' },
+      yaxis: 'y2',
+      hovertemplate: '%{x}: $%{y:,.0f}<extra>Revenue</extra>',
+    },
+  ];
+
+  const layout = {
+    paper_bgcolor: '#111827',
+    plot_bgcolor:  '#111827',
+    font: { color: '#6b7280', family: 'JetBrains Mono, monospace', size: 11 },
+    legend: { orientation: 'h', y: 1.05, x: 0, font: { color: '#9ca3af' }, bgcolor: 'rgba(0,0,0,0)' },
+    xaxis: { gridcolor: '#1f2937', tickcolor: '#374151', linecolor: '#1f2937', zeroline: false },
+    yaxis: {
+      title: 'CAD',
+      gridcolor: '#1f2937', tickcolor: '#374151', linecolor: '#1f2937',
+      zeroline: true, zerolinecolor: '#374151',
+      tickprefix: '$', tickformat: ',.0s',
+    },
+    yaxis2: {
+      overlaying: 'y', side: 'right',
+      tickprefix: '$', tickformat: ',.0s',
+      gridcolor: 'rgba(0,0,0,0)',
+      title: 'Revenue',
+    },
+    height: 520,
+    margin: { t: 30, b: 50, l: 80, r: 80 },
+    hovermode: 'x unified',
+    shapes: [
+      // retirement line
+      {
+        type: 'line',
+        x0: g('retire_year'), x1: g('retire_year'),
+        y0: 0, y1: 1,
+        yref: 'paper',
+        line: { color: 'rgba(248,113,113,0.4)', width: 1, dash: 'dot' },
+      }
+    ],
+    annotations: [{
+      x: g('retire_year'), y: 0.98, yref: 'paper',
+      text: 'Retire', showarrow: false,
+      font: { size: 10, color: '#f87171', family: 'JetBrains Mono, monospace' },
+      xanchor: 'left',
+    }]
+  };
+
+  if (!chartInitialized) {
+    Plotly.newPlot('chart', traces, layout, { responsive: true });
+    chartInitialized = true;
+  } else {
+    Plotly.react('chart', traces, layout);
+  }
+
+  // Table
+  const tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  records.forEach(r => {
+    const tr = document.createElement('tr');
+    const cls = v => v >= 0 ? 'pos' : 'neg';
+    tr.innerHTML = `
+      <td>${r.year}</td>
+      <td>${r.age}</td>
+      <td class="${cls(r.net_worth)}">${fmtC(r.net_worth)}</td>
+      <td class="pos">${fmtC(r.revenue)}</td>
+      <td class="pos">${fmtC(r.etf)}</td>
+      <td class="${cls(r.cash_flow)}">${fmtC(r.cash_flow)}</td>
+      <td class="pos">${fmtC(r.rentals)}</td>
+      <td class="${cls(r.expenses)}">${fmtC(r.expenses)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Init ──────────────────────────────────────────────────────────────
+buildPropInputs();
+document.querySelectorAll('input[type="number"]').forEach(el => el.addEventListener('input', update));
+update();
+</script>
+</body>
+</html>
