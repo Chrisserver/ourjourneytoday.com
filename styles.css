@@ -195,7 +195,7 @@ footer {
 } 
 
 .search-bar-container input:focus { 
-   border-color: #04AA6D; 
+   border-color: var(--shadow); 
 }
 
 .menu-toggle { 
@@ -345,7 +345,7 @@ blockquote {
 
 .article-content th, .article-content td { border: 1px solid #ddd; padding: 0.6rem 1rem; } 
 
-.article-content th { background: #2b3e50; color: white; text-align: left; } 
+.article-content th { background: var(--background); color: white; text-align: left; } 
 
 /* Fade‑in animation */ 
 
@@ -381,7 +381,7 @@ blockquote {
 
 .timeline { position: relative; padding: 2rem 0; list-style: none; }
 
-.timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: #04AA6D; } 
+.timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 4px; background: var(--shadow); } 
 
 .entry { position: relative; margin-bottom: 2.5rem; padding-left: 50px; }
 
@@ -460,7 +460,7 @@ form label { display: block; margin-top: 1rem; font-weight: bold; color: var(--s
 
 form input[type="text"], form input[type="email"], form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px; margin-top: 0.5rem; font-size: 1rem; resize: vertical; } 
 
-form button { margin-top: 2rem; padding: 0.75rem 1.5rem; background: #2b3e50; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease; } 
+form button { margin-top: 2rem; padding: 0.75rem 1.5rem; background: var(--secondary); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: background 0.3s ease; } 
 
 form button:hover { background: var(--secondary); } 
 
