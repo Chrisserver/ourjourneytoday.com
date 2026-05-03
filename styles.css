@@ -306,7 +306,7 @@ blockquote {
 
 /* Typography */ 
 
-.article-content h1, .article-content h2, .article-content h3 { color: #2b3e50; margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.2; } 
+.article-content h1, .article-content h2, .article-content h3 { color: var(--text); margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.2; } 
 
 .article-content p { margin: 1rem 0; } 
 
@@ -358,11 +358,11 @@ blockquote {
 
 .community-grid { display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; justify-content: center; } 
 
-.community-card { background-color: #ffffff; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); padding: 1.5rem; max-width: 300px; flex: 1 1 280px; transition: transform 0.2s ease, box-shadow 0.2s ease; } 
+.community-card { background-color: var(--background); border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); padding: 1.5rem; max-width: 300px; flex: 1 1 280px; transition: transform 0.2s ease, box-shadow 0.2s ease; } 
 
 .community-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); } 
 
-.community-card h3 { margin-top: 0; color: #2b3e50; } 
+.community-card h3 { margin-top: 0; color: var(--text-highlight); } 
 
 .read-more { display: } 
 
@@ -384,9 +384,9 @@ blockquote {
 
 .entry { position: relative; margin-bottom: 2.5rem; padding-left: 50px; }
 
-.marker { position: absolute; left: 12px; top: 5px; width: 16px; height: 16px; background: white; border: 4px solid #04AA6D; border-radius: 50%; }
+.marker { position: absolute; left: 12px; top: 5px; width: 16px; height: 16px; background: white; border: 4px solid var(--surface); border-radius: 50%; }
 
-.entry .content h2 { margin: 0; color: #2b3e50; } 
+.entry .content h2 { margin: 0; color: var(--text); } 
 
 .entry .content p { margin: 0.5rem 0 0 0; line-height: 1.6; } 
 
@@ -441,21 +441,21 @@ blockquote {
 
 .product img { max-width: 100%; border-radius: 8px; } 
 
-button { margin-top: 1rem; padding: 0.5rem 1rem; background: #2b3e50; color: white; border: none; border-radius: 5px; cursor: pointer; } 
+button { margin-top: 1rem; padding: 0.5rem 1rem; background: var(--secondary); color: white; border: none; border-radius: 5px; cursor: pointer; } 
 
 .shop-links { text-align: center; margin: 2rem 0; } 
 
 .shop-button { display: inline-block; margin: 1rem; padding: 1rem 2rem; font-size: 1.1rem; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s; } 
 
-.etsy { background-color: #f56400; color: white; } 
+.etsy { background-color: var(--shadow); color: white; } 
 
-.shopify { background-color: #96bf48; color: white; } 
+.shopify { background-color: var(--shadow); color: white; } 
 
 .shop-button:hover { opacity: 0.9; background: var(--secondary); } 
 
-.form-container { max-width: 700px; margin: 3rem auto; background: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); } 
+.form-container { max-width: 700px; margin: 3rem auto; background: var(--background); padding: 2rem; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.1); } 
 
-form label { display: block; margin-top: 1rem; font-weight: bold; color: #2b3e50; } 
+form label { display: block; margin-top: 1rem; font-weight: bold; color: var(--shadow); } 
 
 form input[type="text"], form input[type="email"], form textarea { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 6px; margin-top: 0.5rem; font-size: 1rem; resize: vertical; } 
 
