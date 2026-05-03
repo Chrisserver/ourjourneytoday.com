@@ -1,89 +1,130 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Journey Today</title>
+
+  <!-- SEO Core -->
+  <title>Our Journey Today | Christian Blog, Faith, Testimonies & Teachings</title>
+  <meta name="description" content="A Christian blog sharing faith, testimonies, teachings, and daily inspiration to help you grow closer to God and walk toward the Kingdom of Heaven.">
+  <meta name="keywords" content="Christian blog, faith journey, testimonies, Bible teachings, prayer, God, spiritual growth">
+  <meta name="author" content="Christopher Servant">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph (for sharing) -->
+  <meta property="og:title" content="Our Journey Today">
+  <meta property="og:description" content="Faith, testimonies, and daily inspiration to grow closer to God.">
+  <meta property="og:image" content="https://yourdomain.com/images/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/logo.png">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" type="images/png" href="/images/logo.png" sizes="16x16">
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="script.js" defer></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Schema.org (SEO BOOST) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Our Journey Today",
+    "description": "A Christian blog focused on faith, testimonies, and spiritual growth.",
+    "author": {
+      "@type": "Person",
+      "name": "Christopher Servant"
+    }
+  }
+  </script>
 </head>
+
 <body>
-  <div class="topnav">
-    <!-- Hamburger menu on the left -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
-      &#9776;
-    </button>
-    
-    <!-- Logo in the middle -->
-    <a href="/index.html" class="logo-container">
-      <img src="images/logo.png" alt="Logo" class="logo-image" />
-    </a>
 
-    <!-- Search bar on the right -->
-    <a href="/search.html" class="search-logo">
-      <img src="images/search.svg" alt="Search Container" class="nav-icon" />
-    </a>   
-  </div>
+  <!-- NAVBAR -->
+  <header>
+    <div class="topnav">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">&#9776;</button>
 
-  <nav id="navMenu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="teachings.html">Teachings</a></li>
-      <li><a href="my-story.html">My Story</a></li>
-      <li><a href="community.html">Community Voices</a></li>
-      <li><a href="submit.html">Submit Story</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="shop.html">Shop</a></li>
-    </ul>
-  </nav>
-  
-  
-  <div class="site-header">
-    <h1>Our Journey Today</h1>
-  </div>
-  
+      <a href="/index.html" class="logo-container">
+        <img src="images/logo.png" alt="Our Journey Today Christian Blog Logo" class="logo-image" />
+      </a>
+
+      <a href="/search.html" class="search-logo">
+        <img src="images/search.svg" alt="Search articles" class="nav-icon" />
+      </a>
+    </div>
+
+    <nav id="navMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="teachings.html">Teachings</a></li>
+        <li><a href="my-story.html">My Story</a></li>
+        <li><a href="community.html">Community Voices</a></li>
+        <li><a href="submit.html">Submit Story</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Walking Together Toward the Kingdom</h1>
+    <p>Faith, testimonies, and teachings to help you grow closer to God every day.</p>
+    <a href="teachings.html" class="cta-button">Start Reading</a>
+  </section>
+
   <main>
-    <section class="hero">
-      <h2>Walking Together Toward the Kingdom</h2>
-      <p>This is a space where faith meets life. Where we share, learn, and grow together in Christ.</p>
-    </section>
 
+    <!-- DAILY INSPIRATION -->
     <section class="daily-inspiration">
-      <div class="verse-card">
+      <article class="verse-card">
         <h2>📖 Verse of the Day</h2>
         <blockquote id="verseText">
-          "For I will set My eyes on them for good, and I will bring them back to this land; I will build them and not pull them down, and I will plant them and not pluck them up. 7 Then I will give them a heart to know Me, that I am the Lord; and they shall be My people, and I will be their God, for they shall return to Me with their whole heart." 
+          “For I will set My eyes on them for good...”
         </blockquote>
-        <p class="reference" id="verseRef">— Jeremiah 24 : 6-7</p>
-      </div>
+        <p class="reference">— Jeremiah 24:6–7</p>
+      </article>
 
-      <div class="prayer-card">
+      <article class="prayer-card">
         <h2>🙏 Prayer of the Day</h2>
-        <p id="prayerText">
-          O Lord, make me a humble servant, cleanse me and make me whiter than snow. Make me wear Your love and Your grace today, and make me spread that love all around me. Amen
+        <p>
+          O Lord, make me a humble servant. Fill me with Your love and let me reflect Your grace today. Amen.
         </p>
-      </div>
+      </article>
     </section>
 
+    <!-- FEATURED -->
     <section id="featuredSection">
-      <h2>Featured Articles</h2>
+      <h2>Featured Christian Teachings</h2>
       <div id="featuredGrid" class="articles-grid"></div>
+      <p class="center-link">
+        <a href="teachings.html">Explore all teachings →</a>
+      </p>
     </section>
 
-    <p style="text-align: center;"><a href="teachings.html">Read more teachings →</a></p>
-
+    <!-- COMMUNITY -->
     <section class="highlight">
-      <h3>Community Spotlight</h3>
-      <p><a href="community.html">Read Sarah’s story: “From Night to Light”</a></p>
+      <h2>Community Testimonies</h2>
+      <p>
+        <a href="community.html">
+          Read powerful stories of faith and transformation →
+        </a>
+      </p>
     </section>
+
   </main>
+
+  <!-- FOOTER -->
   <footer>
     <p>&copy; 2025 Our Journey Today. All rights reserved.</p>
   </footer>
+
 </body>
 </html>
