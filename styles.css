@@ -31,7 +31,7 @@ body {
    margin: 0; 
    padding: 0; 
    background: var(--background);
-   color: var(--text);
+   color: white;
 } 
 
 header { 
@@ -306,7 +306,7 @@ blockquote {
 
 /* Typography */ 
 
-.article-content h1, .article-content h2, .article-content h3 { color: var(--text); margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.2; } 
+.article-content h1, .article-content h2, .article-content h3 { color: white; margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.2; } 
 
 .article-content p { margin: 1rem 0; } 
 
@@ -362,7 +362,7 @@ blockquote {
 
 .community-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); } 
 
-.community-card h3 { margin-top: 0; color: var(--text-highlight); } 
+.community-card h3 { margin-top: 0; color: white; } 
 
 .read-more { display: } 
 
@@ -386,7 +386,7 @@ blockquote {
 
 .marker { position: absolute; left: 12px; top: 5px; width: 16px; height: 16px; background: white; border: 4px solid var(--surface); border-radius: 50%; }
 
-.entry .content h2 { margin: 0; color: var(--text); } 
+.entry .content h2 { margin: 0; color: white; } 
 
 .entry .content p { margin: 0.5rem 0 0 0; line-height: 1.6; } 
 
